@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <script src='http://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+  
+  <style>
+      body {
+        margin:0;
+        padding:0;
+      }
+      #mapsetup {
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:100%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id='mapsetup'></div>
+    <script>
+    var mappy = L.mapbox.map('mapsetup').setView([41.477332,-81.670303], 13);
+
+    // add initially to map
+    L.mapbox.tileLayer('skorasaurus.gnamp6k0').addTo(mappy);
+
+    L.control.layers({
+    'Dec. 2012 - Downtown Cleveland/Innerbelt': L.mapbox.tileLayer('skorasaurus.basic_cleveland'),
+    'Current Downtown Cleveland/Innerelt': L.mapbox.tileLayer('skorasaurus.clemaps')
+    }).addTo(mappy);
+
+      map.setZoomRange(10, 17);
+
+    </script>
+  </body>
+
+</html>
