@@ -23,14 +23,14 @@
   <body>
     <div id='mapsetup'></div>
     <script>
-    var mappy = L.mapbox.map('mapsetup').setView([41.477332,-81.670303], 13);
+    var mappy = L.mapbox.map('mapsetup').setView([-81.6784,41.4935], 15);
 
     // add initially to map
-    L.mapbox.tileLayer('skorasaurus.gnamp6k0').addTo(mappy);
+    L.mapbox.tileLayer(' skorasaurus.basic_cleveland').addTo(mappy);
 
     L.control.layers({
-    'Dec. 2012 - Downtown Cleveland/Innerbelt': L.mapbox.tileLayer('skorasaurus.basic_cleveland'),
-    'Current Downtown Cleveland/Innerelt': L.mapbox.tileLayer('skorasaurus.clemaps')
+    'Dec. 2012 - Downtown Cleveland/Innerbelt': L.mapbox.tileLayer('skorasaurus.osmbrightdec2012'),
+    'Current Downtown Cleveland/Innerelt': L.mapbox.tileLayer('skorasaurus.basic_cleveland')
     }).addTo(mappy);
 
       map.setZoomRange(10, 17);
