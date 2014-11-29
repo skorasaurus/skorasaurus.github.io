@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8" />
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.css' rel='stylesheet' />
+
+
+
+<title> nW0</title> 
+    </head>
+  <body>
+  <style>
+
+#themap {
+  width: 80%; height: 600px; 
+  position:absolute;
+}
+
+
+.filter-ui {
+  background:#fff;
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:100;
+  padding:10px;
+  border-radius:3px;
+  }
+
+</style>
+
+<nav id='filters' class='filter-ui'>Select: </nav>
+<div id="themap"></div>
+
+<script> 
+
+// begin mapbox code    
+
+L.mapbox.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g'; 
+
+var filters = document.getElementById('filters');
+
+var mizzap = L.mapbox.map('themap', 'skorasaurus.67b7e400')
+    .setView([41.500880,-81.694036], 12);
+               
+
+
+</script>
+
+
+  </body>
+</html>
