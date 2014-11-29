@@ -18,7 +18,9 @@ This a great strategy and I'd advise anyone who is interested in improving TIGER
 
 Watch a quick example of this workflow in the GIF. 
 
-http://media.giphy.com/media/yoJC2xRysrWnNO389a/giphy.gif
+![GIF - editing osm with tiger2014 and josm](http://media.giphy.com/media/yoJC2xRysrWnNO389a/giphy.gif
+ "gif")
+
 
 If you're interested in a detailed workflow, skip to the end... 
 
