@@ -1,13 +1,79 @@
 ---
-layout: default
+layout: cartodb
 ---
 
-<div class="well">
-    <h1>CLeveland buildings age</h1>
-    <p>This is an index test of some of the maps that I've made.</p>
+<div class="well" >
+    <div id="mappy" style="width: 100%; height: 500px; border: 1px solid #ccc;">
+    <h1>The age of Cleveland Buildings</h1>
+   <div class="map-navigation"> 
+ <p>Some observations: </p>
+    <p> During the 1930s, the rate of new building construction plummeted and left several streets like <a href="#" data-zoom="17" data-position="41.445227,-81.808204"> West 158th St. </a> to have adjacent houses built 10-15 years apart from each other. </p>
+    <p> 
+    Those unfamiliar with the East side will be surprised to see the small pockets of market-rate housing
+    during the 1990s  
+    <a href="#" data-zoom="16" data-position="41.495352,-81.661044">
+      at East 36th-38th between Central and Community College </a> and 
+    <a href="#" data-zoom="17" data-position="41.504627,-81.628761"> East 82nd-87th, between Chester and Euclid
+     </a> </p> <p>
+     Also, there's some of my favorite houses in Cleveland, a small block of some dense housing right in Downtown, on 
+    <a href="#" data-zoom="18" data-position="41.505316,-81.683604"> 13th and Lindazzo. </a> They were built in 07 and with the housing market crashing, any other pending construction there was postponed...
+</div> </p>
 
-<iframe width='100%' height='520' frameborder='0' src='http://skorasaurus.cartodb.com/viz/a97c62e6-9209-11e4-aec3-0e018d66dc29/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+     <p> The raw data for further analysis is available at <a href="http://github.com/skorasaurus/clebuildings"> http://github.com/skorasaurus/clebuildings</p> </a>
+ </div>
 
-    
-</div>
+ </div>
+
+<script>
+
+// for reference also see https://github.com/CartoDB/cartodb.js/blob/develop/examples/easy.html
+
+   cartodb.createVis('mappy', 'http://skorasaurus.cartodb.com/api/v2/viz/a97c62e6-9209-11e4-aec3-0e018d66dc29/viz.json', 
+    {
+shareable: false,
+title: false,
+description: false,
+search: false,
+tiles_loader: true,
+center_lat: 41.4962, 
+center_lon: -81.684889,
+zoom: 12
+})
+  .done(function(vis, layers) {
+    // layer 0 is the base layer, layer 1 is cartodb layer
+    // when setInteraction is disabled featureOver is triggered
+    layers[1].setInteraction(true);
+    layers[1].on('featureOver', function(e, latlng, pos, data, layerNumber) {
+      cartodb.log.log(e, latlng, pos, data, layerNumber);
+    });
+
+    // you can get the native map to work with it
+    var map = vis.getNativeMap();
+
+    // now, perform any operations you need, e.g. assuming map is a L.Map object:
+    // map.setZoom(3);
+    // map.panTo([50.5, 30.5]);
+
+    document.getElementById('mappy').onclick = function(abc) {
+        var pos = abc.target.getAttribute('data-position');
+        var zoom = abc.target.getAttribute('data-zoom');
+        if (pos && zoom) {
+            var locat = pos.split(',');
+            var zoo = parseInt(zoom);
+            map.setView(locat, zoo, {animation: true});
+            return false;
+        }
+    }      
+
+  });
+
+
+
+                
+    /// really bad hack before to make sure that the bottom isn't cut off. 
+            </script>
+
+
+    </div> 
+
 
