@@ -19,7 +19,7 @@ layout: cartodb
     <a href="#" data-zoom="18" data-position="41.505316,-81.683604"> 13th and Lindazzo. </a> They were built in 07 and with the housing market crashing, any other pending construction there was likely postponed...
 </div> </p>
 
-     <p> The raw data for further analysis is available at <a href="http://github.com/skorasaurus/clebuildings"> http://github.com/skorasaurus/clebuildings</p> <p> </a> Data was provided by NEOCANDO/NST. I don't know how they acquired it, likely from scraping the <a href="http://fiscalofficer.cuyahogacounty.us/AuditorApps/real-property/REPI/default.asp"> county auditor website</a>. Notes/Errata: Some CMHA residential buildings (Outhwaite and 55th, Woodland and Bundy) are only counted (and mapped) as a single building in the dataset although there's several individual buildings there. This is because the county classifies these buildings to be on a single land parcel and there's only 1 building on each parcel.</p>
+     <p> The raw data for further analysis is available at <a href="http://github.com/skorasaurus/clebuildings"> http://github.com/skorasaurus/clebuildings</p> <p> </a> Data was provided by NEOCANDO/NST. I don't know how they acquired it, likely from scraping the <a href="http://fiscalofficer.cuyahogacounty.us/AuditorApps/real-property/REPI/default.asp"> county auditor website</a>. Notes/Errata: Some CMHA residential buildings (Outhwaite and 55th, Woodland and Bundy) are only counted (and mapped) as a single building in the dataset although there's several individual buildings there. This is because the county classifies these buildings to be on a single land parcel and assign one building date for each parcel.</p>
     
  </div>
 
@@ -31,7 +31,7 @@ layout: cartodb
    cartodb.createVis('mappy', 'http://skorasaurus.cartodb.com/api/v2/viz/a97c62e6-9209-11e4-aec3-0e018d66dc29/viz.json', 
     {
 shareable: false,
-title: false,
+title: true,
 description: false,
 search: false,
 tiles_loader: true,
