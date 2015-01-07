@@ -1,7 +1,7 @@
 # Jekyll configuration
 
-name: My blog
-description: my blog yo
+name: Will Skora's blog
+description: Writing on maps | open data | Cleveland 
 
 # url is currently only used only for the RSS feed in feed.xml
 url: http://skorasaurus.github.io
