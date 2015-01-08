@@ -1,9 +1,3 @@
-layout: post
-title: "Mapping Cleveland's Building Ages"
-date: 2015-01-08 09:25:06 -0700
-comments: true
----
-
 A quick update to let people know that I made an online map of <a href=
 "http://skorasaurus.github.io/maps/clebuildings.html"> Cleveland's Building ages </a>
 
