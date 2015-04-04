@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+ <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.13/cartodb.js"> </script>
+ <link href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.13/themes/css/cartodb.css" rel='stylesheet' /> 
+
+  <style>
+      body {
+        margin:0;
+        padding:0;
+      }
+      #mappy {
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:100%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <style>
+      #location-list {
+        position:absolute;
+        top:0px;
+        background:#fff;
+        z-index:999;
+        overflow:auto;
+        opacity:0.6;
+        padding:10px;
+        left:10px;
+
+      }
+      #location-list a {
+        font-size:16px;
+        text-decoration:none;
+      }
+    </style>
+      <div id='location-list'>
+        
+<h2> Cleveland's Ward boundaries in 2014</h2> <a href="https://github.com/skorasaurus/cleboundaries/">https://github.com/skorasaurus/cleboundaries/</a>
+    </div>
+    <div id='mappy'></div>
+    <script>
+
+ //   L.mapbox.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g';
+
+      // http://mapbox.com/mapbox.js/example/interactive-layer-mapbox-layer/
+
+//      map.setView([41.5010, -81.6922], 12);
+
+     var basemap = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/skorasaurus.99163c40/{z}/{x}/{y}.png', {maxZoom: 18});
+                var latlng = new L.LatLng(41.501860,-81.635799);
+                
+                var map = new L.Map('mappy', {center: latlng, zoom: 10, layers: [basemap]});
+
+  cartodb.createLayer(map, 'http://skorasaurus.cartodb.com/api/v2/viz/71ad7876-da04-11e4-a16b-0e0c41326911/viz.json')
+    .addTo(map)
+    .on('done', function(layer) {
+      //do stuff
+    })
+    .on('error', function(err) {
+      alert("some error occurred: " + err);
+    });
+
+      // is interaction auto not necessary in 1.5.x ?  
+      // map.interaction.auto();
+      // streets
+ 
+      
+      // from mapbox 0.6.7.
+      // map.setZoomRange(11, 17);
+      
+    
+    </script>
+  </body>
+
+</html>
