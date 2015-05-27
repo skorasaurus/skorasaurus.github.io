@@ -3,10 +3,7 @@
   
   <head>
    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
- 
-    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.14/themes/css/cartodb.css" />
-
-    
+   
   <style>
       body {
         margin:0;
@@ -69,6 +66,7 @@
       }
     </style>
 
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.14/themes/css/cartodb.css" />
 
 
 <style type="cartocss/text" id="cartocss">
@@ -103,6 +101,9 @@ Map {
  marker-width:10;
  marker-fill-opacity:0.225;
 }
+#cledemo[frame-offset=3] {
+ marker-width:10;
+ marker-fill-opacity:0.025;
 </style>
 
   </head>
@@ -114,9 +115,8 @@ Map {
  
     <script>
 
- //   L.mapbox.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g';
 
-  function main() {
+function main() {
 
     var map = new L.Map('mappy', {
         center: [41.501860, -81.635799],
@@ -130,7 +130,8 @@ Map {
         type: 'torque',
         options: {
             user_name: 'skorasaurus', // replace with your user name
-            table_name: 'cledemo',
+            table_name: 'demolitions',
+           // query: "SELECT * FROM " + table_name,
             cartocss: $("#cartocss").html()
         }
     }
