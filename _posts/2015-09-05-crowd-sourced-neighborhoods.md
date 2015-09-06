@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mapping your neighborhoodin Cleveland and Akron: 
+title: "Mapping your neighborhoodin Cleveland and Akron" 
 date: 2015-09-05 16:25:06 -0700
 comments: false
 ---
