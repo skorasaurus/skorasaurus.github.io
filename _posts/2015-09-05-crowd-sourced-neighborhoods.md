@@ -17,30 +17,13 @@ I'm presenting an exercise in mapping for fun: allowing each of you to say where
 
 You're encouraged to map (that is draw) the neighborhood where you live but also others that you may not live in but may spend a lot of time in or feel strongly about. 
 
-A map is not just a static representation of outsides, 
+A map is not just a static representation; but 
 
 but this is to map as a verb: you can not only 
 
 
-
-
 I've also added Akron's as well, prompted by a converation with Jason Segedy.  
-
 Thanks to work of [Andy Woodruff](http://bostonography.com/2015/map-your-neighborhood-again/); and [Nick Martinelli](http://pnwmaps.com/neighborhoods/). I've been able to build upon their work; 
 
 
-If you're a developer and wish to implement this in your own city, the source code is available on [github](https://github.com/enam/neighborhoods/)
-
-
-
-
-Stories: 
-
-What does the neighborhood mean to you? 
-
-
-I've had my thoughts of neighborhoods and made a made of them in 2010-11. 
-
-MAKE A BULLET LIST OF WHAT FLAGGING IS; 
-
-WHAT LOVING IS. 
+If you're a developer and wish to implement this in your own city, the source code is available on [github](https://github.com/enam/neighborhoods/) and I've made a couple adjustments that I'll be adding shortly to source code.
