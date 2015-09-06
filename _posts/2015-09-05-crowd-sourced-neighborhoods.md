@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mapping your neighborhoodin Cleveland and Akron" 
+title: "Mapping your neighborhood in Cleveland and Akron" 
 date: 2015-09-05 16:25:06 -0700
 comments: false
 ---
@@ -15,6 +15,7 @@ In Cleveland, neighborhoods' boundaries are largely left to the imaginations of 
 
 I'm presenting an exercise in mapping for fun: allowing each of you to say where your neighborhood is. 
 
+*Map Your neighborhood at [http://skorasaur.us/nh](http://skorasaur.us/nh)*
 
 You're encouraged to map (that is draw) the neighborhood where you live but also others that you may not live in but may spend a lot of time in or feel strongly about. 
 
