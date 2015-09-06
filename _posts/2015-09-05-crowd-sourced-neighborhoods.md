@@ -9,19 +9,17 @@ Where does a neighborhood's boundary begin and end; What does a neighborhood's n
 
 Questions like these have fascinated me. 
 I conducted in 2010-12, by bicycling around Cleveland, asking people 
-my first map was of Cleveland's neighborhoods. 
+[https://skorasaurus.wordpress.com/cleveland-neighborhood-map/](my first map was of Cleveland's neighborhoods).
 
 In Cleveland, neighborhoods' boundaries are largely left to the imaginations of residents, visitors, realtors, and businesses. 
 
 I'm presenting an exercise in mapping for fun: allowing each of you to say where your neighborhood is. 
 
-*Map Your neighborhood at [http://skorasaur.us/nh](http://skorasaur.us/nh)*
+**Map Your neighborhood at [http://skorasaur.us/nh](http://skorasaur.us/nh)**
 
 You're encouraged to map (that is draw) the neighborhood where you live but also others that you may not live in but may spend a lot of time in or feel strongly about. 
 
-A map is not just a static representation; but 
-
-but this is to map as a verb: you can not only 
+Map is a verb: Not only can you view the map, but also help define what it represents. 
 
 
 I've also added Akron's as well, prompted by a converation with Jason Segedy.  
