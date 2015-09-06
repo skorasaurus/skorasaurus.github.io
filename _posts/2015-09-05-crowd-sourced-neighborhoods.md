@@ -1,6 +1,7 @@
 ---
 layout: post
-Mapping your neighborhoodin Cleveland and Akron: 2014-08-22 16:25:06 -0700
+title: Mapping your neighborhoodin Cleveland and Akron: 
+date: 2015-09-05 16:25:06 -0700
 comments: false
 ---
 
