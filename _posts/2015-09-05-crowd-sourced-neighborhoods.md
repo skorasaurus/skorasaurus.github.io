@@ -7,23 +7,20 @@ comments: false
 
 Where does a neighborhood's boundary begin and end; What does a neighborhood's name mean to a particular person; How do their boundaries and names change over time and from person to person. 
 
-Questions like these have fascinated me. 
-I conducted in 2010-12, by bicycling around Cleveland, asking people 
-[https://skorasaurus.wordpress.com/cleveland-neighborhood-map/](my first map was of Cleveland's neighborhoods).
-
-In Cleveland, neighborhoods' boundaries are largely left to the imaginations of residents, visitors, realtors, and businesses. 
+In Cleveland, neighborhoods' boundaries are largely left to the imaginations of residents, visitors, realtors, and businesses. I hope this could 
 
 I'm presenting an exercise in mapping for fun: allowing each of you to say where your neighborhood is. 
 
-**Map Your neighborhood at [http://skorasaur.us/nh](http://skorasaur.us/nh)**
+**Map Your Neighborhood at [http://skorasaur.us/nh](http://skorasaur.us/nh)**
 
-You're encouraged to map (that is draw) the neighborhood where you live but also others that you may not live in but may spend a lot of time in or feel strongly about. 
+You're encouraged to map (that is draw) the neighborhood where you live but others that you may not live in but may spend a lot of time in or feel strongly about. 
 
-Map is a verb: Not only can you view the map, but also help define what it represents. 
+With projects like [http://openstreetmap.org](OpenStreetMap) and improved technology and software, mapping is not only a noun, but it is also used as a verb and is enabling more people to create and modify what is (or isn't) on a map, the canvas that represents a particular space. 
 
+Prompted by a converation with Jason Segedy, I've also added the city of Akron.   
 
-I've also added Akron's as well, prompted by a converation with Jason Segedy.  
-Thanks to work of [Andy Woodruff](http://bostonography.com/2015/map-your-neighborhood-again/); and [Nick Martinelli](http://pnwmaps.com/neighborhoods/). I've been able to build upon their work; 
+Thanks to work of [Nick Martinelli](http://pnwmaps.com/neighborhoods/) and [Andy Woodruff and Tim Wallace at Bostonography](http://bostonography.com/2015/map-your-neighborhood-again/), I've been able to build upon their work and customize it for Cleveland.
 
+Identifying neighborhoods has fascinated me for some time and inspired me to create my first map - [my (incomplete) interpretation of Cleveland's neighborhoods](https://skorasaurus.wordpress.com/cleveland-neighborhood-map/), in 2010-2011.
 
-If you're a developer and wish to implement this in your own city, the source code is available on [github](https://github.com/enam/neighborhoods/) and I've made a couple adjustments that I'll be adding shortly to source code.
+To make your own instance for a city, the source code and directions are available on [github](https://github.com/enam/neighborhoods/). I've made a couple adjustments (like directions) that I'll be shortly adding. 
