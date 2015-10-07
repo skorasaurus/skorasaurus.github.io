@@ -5,18 +5,16 @@ date: 2015-09-05 16:25:06 -0700
 comments: false
 ---
 
-Where is your neighborhood? What is its name? You can likely quickly answer this but 
+Where is your neighborhood? What is its name? Where is its boundary? Is this boundary fuzzy for you? 
 
-Where does a neighborhood's boundary begin and end? Is this boundary fuzzy for you? 
-
-Even if we mention the names of a neighb. The neighborhood names will change from person to person. 
+Neighborhoods and these answers change from person to person. 
 
 
 In Cleveland, neighborhoods' boundaries are largely left to the imaginations of residents, visitors, realtors, businesses, and non-profits. 
 
 This is enabling you people to share perspective of where their neighborhood is; hasn't 
 
-The City Planning Commission's Statistical Planning Areas, adopted in early 2000s. These names are argely ignored and not widely adopted with good reason, they are missing and many of the names there . 
+The City Planning Commission's Statistical Planning Areas, adopted in early 2000s. These names are argely ignored and not widely adopted with good reason, they are missing and many of the names there aren't used in everyday life. 
 
 Here's your chance to say where your neighborhood is and view what others hve shared. 
 
