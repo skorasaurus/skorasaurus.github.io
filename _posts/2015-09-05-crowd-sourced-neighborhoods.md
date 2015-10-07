@@ -12,8 +12,6 @@ Neighborhoods and these answers change from person to person.
 
 In Cleveland, neighborhoods' boundaries are largely left to the imaginations of residents, visitors, realtors, businesses, and non-profits. 
 
-This is enabling you people to share perspective of where their neighborhood is; hasn't 
-
 The City Planning Commission's Statistical Planning Areas, adopted in early 2000s. These names are argely ignored and not widely adopted with good reason, they are missing and many of the names there aren't used in everyday life. 
 
 Here's your chance to say where your neighborhood is and view what others hve shared. 
