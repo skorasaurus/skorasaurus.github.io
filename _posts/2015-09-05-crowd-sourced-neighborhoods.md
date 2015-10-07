@@ -5,19 +5,34 @@ date: 2015-09-05 16:25:06 -0700
 comments: false
 ---
 
-Where does a neighborhood's boundary begin and end; What does a neighborhood's name mean to a particular person; How do their boundaries and names change over time and from person to person. 
+Where is your neighborhood? What is its name? You can likely quickly answer this but 
 
-In Cleveland, neighborhoods' boundaries are largely left to the imaginations of residents, visitors, realtors, and businesses. I hope this could 
+Where does a neighborhood's boundary begin and end? Is this boundary fuzzy for you? 
 
-I'm presenting an exercise in mapping for fun: allowing each of you to say where your neighborhood is. 
+Even if we mention the names of a neighb. The neighborhood names will change from person to person. 
 
-**Map Your Neighborhood at [http://skorasaur.us/nh](http://skorasaur.us/nh)**
+
+In Cleveland, neighborhoods' boundaries are largely left to the imaginations of residents, visitors, realtors, businesses, and non-profits. 
+
+This is enabling you people to share perspective of where their neighborhood is; hasn't 
+
+The City Planning Commission's Statistical Planning Areas, adopted in early 2000s. These names are argely ignored and not widely adopted with good reason, they are missing and many of the names there . 
+
+Here's your chance to say where your neighborhood is and view what others hve shared. 
+
+**Map Your Neighborhood in Cleveland and Akron at [http://skorasaur.us/nh](http://skorasaur.us/nh)**
+
 
 You're encouraged to map (that is draw) the neighborhood where you live but others that you may not live in but may spend a lot of time in or feel strongly about. 
 
-With projects like [http://openstreetmap.org](OpenStreetMap) and improved technology and software, mapping is not only a noun, but it is also used as a verb and is enabling more people to create and modify what is (or isn't) on a map, the canvas that represents a particular space. 
+No neighborhood or city boundaries are present on the map; to remove biases and to encourage boundaries across city lines. 
 
-Prompted by a converation with Jason Segedy, I've also added the city of Akron.   
+With projects like [http://openstreetmap.org](OpenStreetMap) and improved technology and software, mapping is not only a noun, but it is being used as a verb - creating and modifying what is (or isn't) on a map - the canvas representing a space. 
+
+
+After you've mapped a neighborhood, view what others have drawn.
+
+I hope this sparks a conversation of neighborhood identity in each of you. 
 
 Thanks to work of [Nick Martinelli](http://pnwmaps.com/neighborhoods/) and [Andy Woodruff and Tim Wallace at Bostonography](http://bostonography.com/2015/map-your-neighborhood-again/), I've been able to build upon their work and customize it for Cleveland.
 
