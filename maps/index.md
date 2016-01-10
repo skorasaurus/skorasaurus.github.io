@@ -3,7 +3,7 @@ layout: post
 title: My maps
 ---
 
-A portfolio of some of the maps that I've made. I'm particularly fond of urban areas where people and infrastructure interact.
+A portfolio of some of the maps that I've made. I'm particularly fond of urban areas where people and infrastructure interact. 
 
 
 ![Marillac, cuyahoga food pantry web map](/images/2015-03-24-marillac-excerpt.png "Marillac, cuyahoga food pantry web map")
@@ -12,7 +12,7 @@ View [Marillac](http://skorasaurus.github.io/marillac/) -  [code](https://github
    
 A interactive map of Cuyahoga County Food Pantry and Hot Meal sites. Designed for food pantry managers to refer those in need of food to nearby resources based on their location. 
 
-![GIF - editing osm with tiger2014 and josm](http://api.tiles.mapbox.com/v4/skorasaurus.67b7e400/-81.5831,41.1425,8/400x300.png?access_token=pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g "will's Mapbox Map of -81.5831, 41.1425")
+![a picture of my haunted NWO map](http://api.tiles.mapbox.com/v4/skorasaurus.67b7e400/-81.5831,41.1425,8/400x300.png?access_token=pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g "will's Mapbox Map of -81.5831, 41.1425")
 
 
 View [ N \|/ 0 ](nwo.html) - [code](https://github.com/skorasaurus/nw0.tm2)
@@ -31,7 +31,7 @@ A simple, muted stylesheet designed for base maps. Uses pastel colors.
 
 View [dtparking](http://skorasaurus.github.io/dtparking/) - [code](https://github.com/skorasaurus/dtparking)
 
-Downtown Cleveland's Public Parking Map; Without any updated Public data of public parking lots in Downtown Cleveland, I manually surveyed them and uploaded to OpenStreetMap.
+Downtown Cleveland's Public Parking Map; Without any current publicdata of public parking lots in Downtown Cleveland, I manually surveyed them and uploaded to OpenStreetMap.
 
 ![HOT/HDM ma](/images/2015-03-24-hdm-cartocssexcerpt.png "HOT/HDM map")
 
