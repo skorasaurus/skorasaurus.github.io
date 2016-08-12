@@ -1,0 +1,6 @@
+﻿import: https://raw.githubusercontent.com/tangrams/bubble-wrap/gh-pages/bubble-wrap.yaml
+# overriding datasource with my vectortile key
+sources:
+    osm:
+        type: TopoJSON
+        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-PLfVQz8    
