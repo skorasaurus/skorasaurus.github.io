@@ -3,10 +3,9 @@ layout: default
 title: My maps
 ---
 
-Here's a portfolio of online maps that I've made or significantly contributed towards. I'm particularly fond of urban areas where people and infrastructure interesect and how they are represented. 
+Here's a portfolio of online maps that I've made or significantly contributed towards. I'm particularly fond of slippy maps and urban areas where people and infrastructure interesect and how they are represented. 
 
-Online slippy maps, which offer multiple zoom levels, gives the viewer the opportunity to give attention to areas that are usually neglected and enables the creator - the cartographer, the opportunity to give the viewer to see the wat fine detail
-their in ways that they haven't imagined. 
+Online slippy maps, which offer multiple zoom levels, gives the cartographer, to create visualizations from multiple perspectives (if they so desire) and enable the map reader to see an area in multiple ways that they haven't imagined. 
 
 I primarily use mapbox.js and leaflet for the map interaction. For the map design, I've used a combination of tools: TileMill, Mapbox Studio, Carto, and Tangrams by Mapzen. The source code for these are all available, as indicated in the links below. 
 
