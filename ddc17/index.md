@@ -33,7 +33,7 @@ Examples of bad maps:
 Before photos in [Presentation](presentation.html)
 
 And here a few of these maps presented better: 
-
+(thanks Jonah Adkins for making these!)
 [After](https://a.tiles.mapbox.com/v3/jonahadkins.haepmgna/page.html?secure=1#5/37.038/-94.724)
 
 [after](https://a.tiles.mapbox.com/v3/jonahadkins.haep2l7b/page.html?secure=1#3/12.64/-11.69)
@@ -41,8 +41,8 @@ And here a few of these maps presented better:
 [after](https://a.tiles.mapbox.com/v3/jonahadkins.haf032e2/page.html?secure=1#4/49.18/22.37)
 
 [good example](https://a.tiles.mapbox.com/v3/jonahadkins.hadebnoj/page.html?secure=1#8/42.287/-76.050)
-- clearly 
-- the wealthiest are in the New york city and along the eastern coast; 
+- clear
+- tells a story: the wealthiest are in the New york city and along the eastern coast; 
 - the data is standardized; measured by capita; not subject to differences in the size of population. 
 
 Other mapmaking tools besides [Carto.com](carto.com)
