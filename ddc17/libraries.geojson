@@ -1,0 +1,1145 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/368152695",
+        "@id": "node/368152695",
+        "addr:state": "OH",
+        "addr:street": "East 30th Street",
+        "amenity": "library",
+        "ele": 205,
+        "gnis:county_name": "Cuyahoga",
+        "gnis:feature_id": 1085004,
+        "gnis:import_uuid": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_access:fee": null,
+        "name": "Sterling Branch Cleveland Public Library",
+        "ref:isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 2200,
+        "addr:postcode": null,
+        "addr:city": null,
+        "operator": null,
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": "no",
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.666796,
+          41.497273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/368152918",
+        "@id": "node/368152918",
+        "addr:state": "OH",
+        "addr:street": "East 152nd Street",
+        "amenity": "library",
+        "ele": 190,
+        "gnis:county_name": "Cuyahoga",
+        "gnis:feature_id": 1806966,
+        "gnis:import_uuid": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_access:fee": null,
+        "name": "Collinwood Branch Cleveland Public Library",
+        "ref:isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 856,
+        "addr:postcode": null,
+        "addr:city": "Cleveland",
+        "operator": null,
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": "no",
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.57568,
+          41.555606
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/368153052",
+        "@id": "node/368153052",
+        "addr:state": "OH",
+        "addr:street": "West 140th Street",
+        "amenity": "library",
+        "ele": 234,
+        "gnis:county_name": "Cuyahoga",
+        "gnis:feature_id": 1963304,
+        "gnis:import_uuid": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_access:fee": null,
+        "name": "Rockport Branch Cleveland Public Library",
+        "ref:isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 4421,
+        "addr:postcode": null,
+        "addr:city": null,
+        "operator": null,
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.79019,
+          41.43412
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/368153201",
+        "@id": "node/368153201",
+        "addr:state": "OH",
+        "addr:street": null,
+        "amenity": "library",
+        "ele": 207,
+        "gnis:county_name": "Cuyahoga",
+        "gnis:feature_id": 1807632,
+        "gnis:import_uuid": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_access:fee": null,
+        "name": "Rocky River Public Library",
+        "ref:isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": null,
+        "addr:postcode": null,
+        "addr:city": null,
+        "operator": null,
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": "no",
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.841803,
+          41.476992
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/368153278",
+        "@id": "node/368153278",
+        "addr:state": "OH",
+        "addr:street": "Kinsman Road",
+        "amenity": "library",
+        "ele": 283,
+        "gnis:county_name": "Cuyahoga",
+        "gnis:feature_id": 2087908,
+        "gnis:import_uuid": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_access:fee": null,
+        "name": "Mount Pleasant Branch Cleveland Public Library",
+        "ref:isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 14000,
+        "addr:postcode": null,
+        "addr:city": null,
+        "operator": null,
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": "no",
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.584444,
+          41.464167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/368153279",
+        "@id": "node/368153279",
+        "addr:state": "OH",
+        "addr:street": null,
+        "amenity": "library",
+        "ele": 213,
+        "gnis:county_name": "Cuyahoga",
+        "gnis:feature_id": 2087907,
+        "gnis:import_uuid": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_access:fee": null,
+        "name": "Fulton Branch Cleveland Public Library",
+        "ref:isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": null,
+        "addr:postcode": null,
+        "addr:city": null,
+        "operator": null,
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": "no",
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.712685,
+          41.457985
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/2509710704",
+        "@id": "node/2509710704",
+        "addr:state": null,
+        "addr:street": "Kinsman Road",
+        "amenity": "library",
+        "ele": null,
+        "gnis:county_name": null,
+        "gnis:feature_id": null,
+        "gnis:import_uuid": null,
+        "internet_access:fee": null,
+        "name": "Garden Valley Branch",
+        "ref:isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 7201,
+        "addr:postcode": null,
+        "addr:city": null,
+        "operator": "Cleveland Public Library",
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.637876,
+          41.479867
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/2598454196",
+        "@id": "node/2598454196",
+        "addr:state": null,
+        "addr:street": "Superior Avenue",
+        "amenity": "library",
+        "ele": null,
+        "gnis:county_name": null,
+        "gnis:feature_id": null,
+        "gnis:import_uuid": null,
+        "internet_access:fee": null,
+        "name": "Langston Hughes Branch",
+        "ref:isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 10200,
+        "addr:postcode": null,
+        "addr:city": null,
+        "operator": "Cleveland Public Library",
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.617188,
+          41.521257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/2687918576",
+        "@id": "node/2687918576",
+        "addr:state": null,
+        "addr:street": "Superior Avenue",
+        "amenity": "library",
+        "ele": null,
+        "gnis:county_name": null,
+        "gnis:feature_id": null,
+        "gnis:import_uuid": null,
+        "internet_access:fee": null,
+        "name": "Addison Branch",
+        "ref:isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 6901,
+        "addr:postcode": null,
+        "addr:city": "Cleveland",
+        "operator": null,
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.642493,
+          41.51918
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/4233958921",
+        "@id": "node/4233958921",
+        "addr:state": "OH",
+        "addr:street": "Lorain Avenue",
+        "amenity": "library",
+        "ele": null,
+        "gnis:county_name": null,
+        "gnis:feature_id": null,
+        "gnis:import_uuid": null,
+        "internet_access:fee": null,
+        "name": "Lorain Branch",
+        "ref:isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 8216,
+        "addr:postcode": 44102,
+        "addr:city": "Cleveland",
+        "operator": "Cleveland Public Library",
+        "internet_access": null,
+        "opening_hours": "10:00-19:00",
+        "gnis:reviewed": null,
+        "area": null,
+        "phone": "216-623-7011"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.74166,
+          41.471207
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "node/4552487007",
+        "@id": "node/4552487007",
+        "addr:state": null,
+        "addr:street": "Harvard Avenue",
+        "amenity": "library",
+        "ele": null,
+        "gnis:county_name": null,
+        "gnis:feature_id": null,
+        "gnis:import_uuid": null,
+        "internet_access:fee": null,
+        "name": "Harvard-Lee Branch",
+        "ref:isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr:housenumber": 16918,
+        "addr:postcode": null,
+        "addr:city": null,
+        "operator": "Cleveland Public Library",
+        "internet_access": null,
+        "opening_hours": null,
+        "gnis:reviewed": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.561607,
+          41.449544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/96672880",
+        "@id": "way/96672880",
+        "addr_state": "OH",
+        "addr_stree": "Superior Avenue East",
+        "amenity": "library",
+        "ele": 199,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1072980,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": "no",
+        "name": "Cleveland Public Library",
+        "ref_isil": "US-ocl",
+        "source": "USGS Geonames",
+        "website": "http://cpl.org/",
+        "wikidata": "Q5132215",
+        "wikipedia": "en:Cleveland Public Library",
+        "building": null,
+        "addr_house": null,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.691452,
+          41.501327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/100053901",
+        "@id": "way/100053901",
+        "addr_state": "OH",
+        "addr_stree": null,
+        "amenity": "library",
+        "ele": 222,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 2087909,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "South Brooklyn Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": null,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.70718,
+          41.438338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/103649452",
+        "@id": "way/103649452",
+        "addr_state": "OH",
+        "addr_stree": "Fulton Road",
+        "amenity": "library",
+        "ele": 209,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1085091,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "Carnegie West Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr_house": 1900,
+        "addr_postc": 44113,
+        "addr_city": null,
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.71131,
+          41.482471
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/122805712",
+        "@id": "way/122805712",
+        "addr_state": "OH",
+        "addr_stree": "Broadway Avenue",
+        "amenity": "library",
+        "ele": 220,
+        "gnis_count": null,
+        "gnis_featu": 2087906,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "Fleet Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 7224,
+        "addr_postc": 44105,
+        "addr_city": "Cleveland",
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.63805,
+          41.457112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/123045809",
+        "@id": "way/123045809",
+        "addr_state": "OH",
+        "addr_stree": "East 131st Street",
+        "amenity": "library",
+        "ele": 277,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1070111,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "East 131st Street Branch",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr_house": 3830,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": "Cleveland Public Library",
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.591556,
+          41.45457
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/127947364",
+        "@id": "way/127947364",
+        "addr_state": "OH",
+        "addr_stree": "Detroit Avenue",
+        "amenity": "library",
+        "ele": 202,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1807501,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": "no",
+        "name": "Walz Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 7910,
+        "addr_postc": 44102,
+        "addr_city": null,
+        "operator": "Cleveland Public Library",
+        "internet_1": "wlan",
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.739664,
+          41.481918
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/157054350",
+        "@id": "way/157054350",
+        "addr_state": "OH",
+        "addr_stree": "West 157th Street",
+        "amenity": "library",
+        "ele": 238,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1807636,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "West Park Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 3805,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": "Cleveland Public Library",
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.807572,
+          41.451383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/230604605",
+        "@id": "way/230604605",
+        "addr_state": null,
+        "addr_stree": "Woodland Avenue",
+        "amenity": "library",
+        "ele": 207,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1806522,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "Woodland Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 5806,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.649573,
+          41.487719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/245532887",
+        "@id": "way/245532887",
+        "addr_state": null,
+        "addr_stree": "Jefferson Avenue",
+        "amenity": "library",
+        "ele": null,
+        "gnis_count": null,
+        "gnis_featu": null,
+        "gnis_impor": null,
+        "internet_a": null,
+        "name": "Jefferson Branch",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 850,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": "Cleveland Public Library",
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.685596,
+          41.479253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/263298047",
+        "@id": "way/263298047",
+        "addr_state": null,
+        "addr_stree": "Clark Avenue",
+        "amenity": "library",
+        "ele": null,
+        "gnis_count": null,
+        "gnis_featu": null,
+        "gnis_impor": null,
+        "internet_a": null,
+        "name": "South Branch",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 2704,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": "Cleveland Public Library",
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.700621,
+          41.470218
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/270853048",
+        "@id": "way/270853048",
+        "addr_state": null,
+        "addr_stree": "Shaker Boulevard",
+        "amenity": "library",
+        "ele": null,
+        "gnis_count": null,
+        "gnis_featu": null,
+        "gnis_impor": null,
+        "internet_a": null,
+        "name": "Harvey Rice Library",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 11535,
+        "addr_postc": 44104,
+        "addr_city": "Cleveland",
+        "operator": "Cleveland Public Library",
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.603326,
+          41.484798
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/327635635",
+        "@id": "way/327635635",
+        "addr_state": null,
+        "addr_stree": null,
+        "amenity": "library",
+        "ele": null,
+        "gnis_count": null,
+        "gnis_featu": null,
+        "gnis_impor": null,
+        "internet_a": null,
+        "name": "Cuyahoga County Public Library Brook Park Branch",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": null,
+        "addr_house": null,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.822178,
+          41.398325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/340012370",
+        "@id": "way/340012370",
+        "addr_state": "Ohio",
+        "addr_stree": null,
+        "amenity": "library",
+        "ele": null,
+        "gnis_count": null,
+        "gnis_featu": null,
+        "gnis_impor": null,
+        "internet_a": null,
+        "name": "Cleveland Heights-University Heights Library - Noble Road Branch",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": null,
+        "addr_postc": null,
+        "addr_city": "Cleveland Heights",
+        "operator": "Cleveland Heights-University Heights Library",
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.539894,
+          41.525542
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/423872619",
+        "@id": "way/423872619",
+        "addr_state": "OH",
+        "addr_stree": "Lorain Avenue",
+        "amenity": "library",
+        "ele": 235,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1807485,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "Eastman Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 11602,
+        "addr_postc": null,
+        "addr_city": "Cleveland",
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": "10:00-19:00",
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.76801,
+          41.462462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/423927691",
+        "@id": "way/423927691",
+        "addr_state": "Ohio",
+        "addr_stree": "Turney Road",
+        "amenity": "library",
+        "ele": null,
+        "gnis_count": null,
+        "gnis_featu": null,
+        "gnis_impor": null,
+        "internet_a": null,
+        "name": "Garfield Heights Branch of Cuyahoga County Public Library",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 5409,
+        "addr_postc": 44125,
+        "addr_city": "Cleveland",
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.603926,
+          41.415284
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/458313632",
+        "@id": "way/458313632",
+        "addr_state": "OH",
+        "addr_stree": "Stokes Boulevard",
+        "amenity": "library",
+        "ele": 207,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1699030,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "Martin Luther King Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 1962,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": "no",
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.613429,
+          41.504547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/459390358",
+        "@id": "way/459390358",
+        "addr_state": "OH",
+        "addr_stree": "Saint Clair Avenue",
+        "amenity": "library",
+        "ele": 189,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1701029,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "Glenville Branch",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 11900,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": "Cleveland Public Library",
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.602492,
+          41.541049
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/459390359",
+        "@id": "way/459390359",
+        "addr_state": "OH",
+        "addr_stree": "Crawford Road",
+        "amenity": "library",
+        "ele": 203,
+        "gnis_count": "Cuyahoga",
+        "gnis_featu": 1701034,
+        "gnis_impor": "57871b70-0100-4405-bb30-88b2e001a944",
+        "internet_a": null,
+        "name": "Hough Branch Cleveland Public Library",
+        "ref_isil": null,
+        "source": "USGS Geonames",
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 1566,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": null,
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.627258,
+          41.508733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "way/467672584",
+        "@id": "way/467672584",
+        "addr_state": null,
+        "addr_stree": "Lake Shore Boulevard",
+        "amenity": "library",
+        "ele": null,
+        "gnis_count": null,
+        "gnis_featu": null,
+        "gnis_impor": null,
+        "internet_a": null,
+        "name": "Memorial-Nottingham Branch",
+        "ref_isil": null,
+        "source": null,
+        "website": null,
+        "wikidata": null,
+        "wikipedia": null,
+        "building": "yes",
+        "addr_house": 17109,
+        "addr_postc": null,
+        "addr_city": null,
+        "operator": null,
+        "internet_1": null,
+        "opening_ho": null,
+        "gnis_revie": null,
+        "area": "yes",
+        "phone": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.56188,
+          41.582937
+        ]
+      }
+    }
+  ]
+}
