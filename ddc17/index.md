@@ -41,7 +41,9 @@ And here a few of these maps presented better:
 [after](https://a.tiles.mapbox.com/v3/jonahadkins.haf032e2/page.html?secure=1#4/49.18/22.37)
 
 [good example](https://a.tiles.mapbox.com/v3/jonahadkins.hadebnoj/page.html?secure=1#8/42.287/-76.050)
-
+- clearly 
+- the wealthiest are in the New york city and along the eastern coast; 
+- the data is standardized; measured by capita; not subject to differences in the size of population. 
 
 Other mapmaking tools besides [Carto.com](carto.com)
 
