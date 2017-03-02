@@ -3,7 +3,8 @@ layout: default
 title: Data Day CLE 2017
 ---
 
-[Presentation](presentation.html)
+
+***[Presentation](presentation.html)***
 
 List of resources:  
 
@@ -53,12 +54,23 @@ ecosystem.
 [qgis](qgis.org) - similar to ARCGIS; full-featured 
 free, open-source geospatial data editor.
 
+[qgis](https://github.com/anitagraser/QGIS-resources)
+- qgis resources
+
 [mapzen](https://mapzen.com) - pretty innovative 
 
 geocoding options:
 carto gives a few hundred geocodes a month for free. 
 smartystreets.com - not free, but very accurate and 
 How to geocode in qgis! - [see this post by Stephen Mather](https://smathermather.com/2013/10/01/geocoding-in-qgis-the-easy-way/)
+
+
+
+
+places for tutorials: 
+[maptime!](http://maptime.io)
+[MIT](http://duspviz.mit.edu/tutorials/)
+[a list of beginner friendly tutorials that I've collected](https://pinboard.in/u:skorasaurus/t:geoweb101/) particularly for geospatial analysis and maps on the web
 
 Books to check out (theory and praticality)
 GIS Cartography - Gretchen Peterson 
