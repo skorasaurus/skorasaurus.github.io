@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+ 
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet' />
+<script src='https://cartodb-libs.global.ssl.fastly.net/torque.full.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+
+
+  <style>
+      body {
+        margin:0;
+        padding:0;
+      }
+      #mappy {
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:100%;
+        height:100%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id='mappy'></div>
+    <!-- torque requires underscore as a dependency -->
+<!--
+  torque is a library that works with Leaflet & Mapbox.js, and displays
+  temporal data from CartoDB.
+  See the full documentation at https://github.com/CartoDB/torque
+  -->
+    <script>
+
+L.mapbox.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g';
+
+var map = L.mapbox.map('mappy', 'mapbox.dark', {
+    center: [41.501860, -81.635799],
+    zoom: 18
+  }); 
+
+
+var style =
+    'map {' +
+    '-torque-time-attribute: "city_demo_date";' +
+    '-torque-aggregation-function: "count(cartodb_id)";' +
+    '-torque-frame-count: 760;' +
+    '-torque-animation-duration: 30;' +
+    '-torque-resolution: 2' +
+    '}' +
+    '#layer {' +
+    '  marker-width: 2;' +
+    '  marker-fill-opacity: 1;' +
+    '  marker-fill: #77B2FF; ' +
+    '  comp-op: "lighten";' +
+    '  [value > 2] { marker-fill: #A0F4FF; }' +
+    '  [value > 7] { marker-fill: #FFFFFF; }' +
+    '  [frame-offset = 1] { marker-width: 10; marker-fill-opacity: 0.05;}' +
+    '  [frame-offset = 2] { marker-width: 20; marker-fill-opacity: 0.02;}' +
+    '}';
+
+// This layer is an example of ship positions: replace the user
+// and table with your own to use this example.
+var torqueLayer = new L.TorqueLayer({
+    user: 'skorasaurus',
+    table: 'cle_demolitions',
+    cartocss: style,
+    blendmode: 'lighter',
+    // All Mapbox resources use HTTPS when available, so we'll need
+    // to make torque do the same.
+    tiler_protocol: 'https',
+    tiler_port: 443
+});
+
+// This example autoplays: there are other options available:
+// https://github.com/CartoDB/torque/blob/master/doc/API.md
+torqueLayer.addTo(map);
+torqueLayer.play();
+
+
+
+
+
+
+
+//      var basemap = new L.TileLayer('', {maxZoom: 18});
+
+
+//  // hack to display the cartodb layer above my baselayer
+//     var overlays = cdb_layers;
+//     var lyrs = L.control.layers(overlays, {autoZIndex:true}).addTo(map);
+//     lyrs.bringToFront();
+
+// 
+
+    </script>
+  </body>
+
+</html>
