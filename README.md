@@ -3,7 +3,7 @@ Jekyll Clean
 
 * Get it from [github](https://github.com/scotte/jekyll-clean).
 * See the [live demo](https://scotte.github.io/jekyll-clean).
-* See it [in action on my own blog](https://scotte.github.io).
+* See it [in action on my own blog](https://scotte.org).
 
 A simple and clean Jekyll theme using [bootstrap](http://getbootstrap.com)
 (not to be confused with jekyll-bootstrap) that's easy to modify and very
@@ -60,6 +60,115 @@ and \_posts, and so on, but in practice this is pretty simple.
 This is how I maintain my own blog which is based on this theme. The old history is
 sitting in an **old-master** branch that I can refer to when I need to.
 
+Running Locally
+===============
+
+Here's the exact set of packages I need to install on Debian to run jekyll
+locally with this theme for testing.
+
+```
+$ sudo aptitude install ruby ruby-dev rubygems nodejs
+$ sudo gem install jekyll jekyll-paginate
+```
+
+And then it's just a simple matter of running jekyll locally:
+
+```
+$ jekyll serve --baseurl=''
+```
+
+Now browse to http://127.0.0.1:4000
+
+Using gh-pages
+==============
+
+Running a jekyll site is a bit outside the scope of this doc, but
+sometimes it can be a bit confusing how to configure jekyll for
+project pages versus user pages, for example.
+
+To start with, read through
+[the documentation here](https://help.github.com/articles/user-organization-and-project-pages/).
+This will provide a good overview on how it all works. The git branch and
+baseurl (in _config.yml) will change depending on the sort of site deployed.
+
+When you clone this repository, it's set up for project pages, so the
+deployed branch is "gh-pages" and baseurl is configured to 'jekyll-clean',
+because that's the name of this project.
+
+If you plan to deploy this as user pages, the deployed branch is "master"
+and baseurl is configured to '' (i.e. empty).
+
+Comment Systems
+===============
+
+Jekyll clean supports both [isso](https://posativ.org/isso) and
+[disqus](https://disqus.com) comment systems.
+
+After enabling **comments**, either **isso** or **disquss** must
+be configured. Don't try configuring both!
+
+Isso Comments
+=============
+
+Isso requires running a local server, so is not suitable for hosting
+in github pages, for example. Isso is open source and keeps all your
+data local, unlike Disqus (who knows exactly what they are doing with
+your data).
+
+In _config.yml you'll need to set **isso** to the fully-qualified URL
+if your isso server (this is the value for **data-isso** passed to the
+isso JS). Make sure **comments** is true.
+
+Disqus Comments
+===============
+
+Getting Disqus to work can be a bit more work than it seems like it should be.
+Make sure your Disqus account is correctly configured with the right domain
+of your blog and you know your Disqus shortname.
+
+In _config.yml you'll need to set **disqus** to your Disqus shortname and
+make sure **comments** is true.
+
+Finally, in posts, make sure you have **comments: true** in the YAML front
+matter.
+
+More information on using Disqus with Jekyll is
+[documented here](https://help.disqus.com/customer/portal/articles/472138-jekyll-installation-instructions).
+
+Code Syntax Highlighting
+========================
+
+To use code syntax highlighting, use the following syntax:
+
+```
+```python
+import random
+
+# Roll the die
+roll = random.randint(1, 20)
+print('You rolled a %d.' % roll)
+``` #REMOVE
+```
+
+(Remove #REMOVE from the end of the last line). Which will look like this in
+the rendered jekyll output using the default css/syntax.css provided with this
+theme (which is the **colorful** theme from [https://github.com/iwootten/jekyll-syntax](https://github.com/iwootten/jekyll-syntax)):
+
+```python
+import random
+
+# Roll the die
+roll = random.randint(1, 20)
+print('You rolled a %d.' % roll)
+```
+
+NOTE: The example in this README.md will render differently than in the
+final jekyll output. See the [live demo](https://scotte.github.io/jekyll-clean)
+to see how it really looks.
+
+You can, of course, use any theme you wish, see the jekyll and pygments
+documentation for more details.
+
 License
 =======
 
@@ -83,3 +192,4 @@ respective owners:
 * css/bootstrap.min.css - [bootstrap](http://getbootstrap.com)
 * js/jquery.min.js - [jquery](https://jquery.com)
 * images/cc_by_88x31.png - [creative commons](https://creativecommons.org)
+* css/colorful.css - [iwootten/jekyll-syntax](https://github.com/iwootten/jekyll-syntax)
