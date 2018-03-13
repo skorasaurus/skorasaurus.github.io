@@ -1,8 +1,7 @@
 ---
 layout: post
 ---
-A quick update to let people know that I made an online map of <a href=
-"http://skorasaurus.github.io/maps/clebuildings.html"> Cleveland's Building ages </a>
+A quick update to let people know that I made an <a href= "http://skorasaur.us/maps/clebuildings.html"> online map of Cleveland's Building ages </a>
 
 I've wanted to make one for a couple years now but didn't have access to the data. I finally do now and uploaded the <a href="https://github.com/skorasaurus/clebuildings/blob/master/all.csv"> raw data on github </a>. Once you click on that link, click raw, and save the file as a CSV. 
 
@@ -10,7 +9,7 @@ I've wanted to make one for a couple years now but didn't have access to the dat
 The Case for Open Data: 
 
 I've wanted to make this map for years... Cleveland and Cuyahoga County's data access is less than stellar and falling behind other cities.
-<a href="http://www.codeforamerica.org/governments/principles/open-data/"> Open Data policies </a> foster the culture  where information like building construction dates is shared and readily accessible and updated on the internet for government employees, non-profits, private businesses, and anyone else. 
+<a href="http://www.codeforamerica.org/governments/principles/open-data/"> Open Data policies </a> foster the culture where information like building construction dates is shared and readily accessible and updated on the internet for government employees, non-profits, private businesses, and anyone else. 
 
 In Cleveland, there's growing awareness open data's value to communities <a href="http://www.opencleveland.org"> Open Cleveland </a>, <a href="http://www.codeforamerica.org/"> Code For America Brigade</a>, is among several groups and individuals including <a href="http://cpl.org"> Cleveland Public Library </a>, <a href="http://povertycenter.case.edu/">Center on Urban Poverty and Community Development at Case Western Reserve University </a>
 and <a href="http://www.onecommunity.org/">One Community </a> to promote open data policies and demonstrate its value. 
