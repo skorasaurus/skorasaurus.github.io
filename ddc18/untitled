@@ -1,0 +1,13 @@
+
+I took a geojson file from overpass-turbo  (export-overpass.geojson)
+
+deleted a couple points from it and then took it to geojson.io ; drew more polygons on it; and exported it from geojson.io.  (export.geojson)
+
+when i opened in mapshaper.org - only 2 polygons (the ones that i drew in geojson.io) display although all of the polygons are correctly detected by mapshaper; if I go to export; all 242 polygons are found. 
+
+I've ensured it's valid by geojsonlint.com https://gist.github.com/skorasaurus/cebe4936e2154de52afc91817a2085ac 
+
+did export-withidfield-deleted.geojson
+where i deleted the id field from export.geojson; 
+
+oh, but when the special-style features are null; then it isn't rendered.

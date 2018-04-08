@@ -1,0 +1,41 @@
+We have the 
+
+with the query below:
+SELECT * FROM redfined WHERE property_class IN ('Residential','Commercial','Exempt','Industrial','','Public utilities','Commerc. Exempt','Residential Exempt') OR property_class IS NULL OR year_built > 0
+
+SELECT * FROM redfined2 WHERE property_class IN ('Residential','Residential Exempt') AND year_built > 0
+
+
+
+<div data-background-image='selection_023.png'></div>
+
+<div data-background-image='selection_026.png'></div>
+
+http://bl.ocks.org/HarryStevens/69da410602d8ca6b9f41f72024dba791
+
+ONLY TECH AT JUMP START (STARTING THE AV SYSTEM; the airwall)
+
+av; wall; av; wall (do it in that order)
+
+http://ncgia.ucsb.edu/cctp/units/unit47/html/mas_form.html
+SAYS THAT WHAT I'd make is a DOT map; 
+
+
+
+MOST IMPORTANT:
+right before and after lunch 
+
+and the 
+
+
+
+Design/breaks:
+http://bl.ocks.org/HarryStevens/69da410602d8ca6b9f41f72024dba791
+
+https://schoolofdata.org/
+
+
+
+
+attributions for images: 
+https://www.flickr.com/photos/mahfoudh/37519121762/

@@ -1,0 +1,238 @@
+
+Remember you're trying to make a map and 
+
+I'd caution; you may not need to make a map; 
+
+(my assumptions: you know about lat/lon; that they are polygons, points, and lines. 
+
+FOR THE PRESENTATION; try to find a community to ask: 
+ DON'T learn these tools for the sake; but I'm hoping that
+this presentation may inspire you that this is the right tool for one of your project;
+
+Question what are we trying to communicate to the reader? 
+
+I wanted to ask myself: Are there any trends of where housing was built in Cleveland? 
+
+Where has recent housing been developed? 
+see if there are any development patterns that are made over the years; 
+
+What are we trying to show, what am I trying to tell the reader? 
+Many times, you DO not need to make a map. 
+
+
+DON'T Feel bad; like 80% of my time when I made map was actually cleaning the data up; It's frustrating. I know how that feels; when you're; prepare for that. 
+
+Now, get the data: 
+
+I could go to NEOCANDO
+You can open it in excel; or 
+
+which is what I did, because they don't allow you to merge all of them at one time; 
+
+so, using csvkit's utility
+csvstack 01.csv 02.csv 03.csv 04.csv > all.csv
+csvstat all.csv
+
+look into our data, see what we're encountering. 
+OOF, more than a quarter of our data doesn't even have building dates; 
+
+csvgrep -c 4 -r "Residential" redfined2.csv > onlyresidential.csv
+
+csvgrep -c longitude -r "^$" -i all.csv > redfined.csv 
+(removed the null longitude fields); 
+
+(also mention if I need to convert from CSV to geojson, I have options: 
+csv2geojson - node module - 
+plus geojson.io and perhaps also mapshaper)
+
+ogrinfo all.geojson all | grep "Residential" | sort | uniq -c
+- all is also the layer name here; 
+
+So, let's open up carto; and it's not free anymore - boo; 
+(159/month)
+
+but: 
+
+ingests all sorts of data, CSV, shapefile, from 
+
+(screenshots of hey, i'm filtering the data out into here - I uploaded all of it into here instead)
+
+filtered' 
+(I uploaded it; 
+
+show them the interface; 
+
+create a map; 
+
+USE SQL to filter your data; 
+
+SELECT * FROM redfined2 WHERE property_class IN ('Residential','Residential Exempt') AND year_built > 0
+
+
+also the power of CartoCSS;
+(STYLING); 
+
+(tweaking the zoom level)
+
+what kind of breaks should we use? 
+
+cut -d"," -f6 onlyresidential.csv | sort | uniq -c
+- sorts all of the data that we have here; 
+
+(mention our questions again; what are we trying to show)
+
+Mention dot maps can be really flawed; because the points aren't 
+
+but most of the time, the parcels are quite small; (couldn't tell whether )
+
+We have the
+NOW, let's create a map! 
+ WHAT KIND OF MAP TO MAKE: 
+
+a choropleth: 
+
+Diverging schemes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The critical class or break in the middle of the legend is emphasized with light colors and low and high extremes are emphasized with dark colors that have contrasting hues.
+
+
+
+Qualitative schemes - GOOD FOR qualities (like a map on an connotation like
+like race, who is the historical colonizer for a particular country if africa)
+
+
+AND mapbox: 
+
+Also mention that there's mapbox: 
+- does geocoding; upload your data on here; much more customized styling with your 
+basemap; 
+
+mapbox: 
+
+(DATASETS - EDIT your data in here)
+(then turn it into a tileset)
+then add it to a style; 
+
+
+
+(upload the parking data here)
+
+That doesn't work here: 
+
+Now the parking map! (a simpler map); 
+
+todo: walk through the mapshaper 
+
+and the 
+
+http://mapstarter.com/
+
+- mapstarter: (free)
+ - can only style for integer-based chloropleths; 
+
+- good for contiguous elements; because there's no background elements here; 
+
+but hey, we need to do more 
+
+mapshaper
+
+
+MAP TYPES http://uxblog.idvsolutions.com/2011/10/telling-truth.html
+
+uh-oh, those colors are ugly! (slide)
+
+
+
+https://eagereyes.org/basics/rainbow-color-map
+
+Now colors: 
+
+- colors can mislead! 
+
+but point out that color is the best thing to use; as opposed to shape; see 
+(make a screenshot)
+https://infoactive.co/data-design/ch17.html
+
+
+- colors: don't forget about your colorblind friends! 
+(colorbrewer! )
+
+sequential - 
+
+also mention why you don't want to use a rainbow color scheme: 
+https://eagereyes.org/basics/rainbow-color-map
+
+(could also go into diverging, sequential, and color schemes )
+
+
+now, you can use their defaults; or go crazy with their styling here; 
+mapbox is geared more towards that... 
+
+
+if you want to completely change the style of your background map; 
+(you can still do it on cartodb)
+
+QGIS: 
+
+the column, but in 
+
+(YES)
+
+"Year_Built"; 
+
+(I personally like to do the data/ETL ); because you don't get burned if the tool 
+changes; but you're not required.
+
+also uses the technology of vector tiles;
+(we can talk more about that; have some talking points on that; )
+
+
+https://api.mapbox.com/styles/v1/skorasaurus/cjffpbcqn9dxi2rqgkp4zj43m/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g
+
+
+(census block 600 and 3,000 people, )
+
+Now, how about if you want to print it out?! 
+
+well, mapbox has a couple different options: 
+
+https://www.mapbox.com/help/static-api-playground/
+(this says non-profits and education, have at it! 
+
+https://printmaps.mpetroff.net/
+
+static: 
+https://www.mapbox.com/api-documentation/#static
+curl https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-81.75558,41.45970,13.3,0,0/388x200@2x?access_token=pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g
+
+normalize your data; 
+
+If you just want a single editor print; this is more complicated but possible; 
+https://www.mapbox.com/api-documentationyearpages/static_classic.html
+
+
+what you need for the situation. Different journalists will benefit, or not benefit, in different ways. Don’t sit down with a big boring book and an online course and declare you’re going to learn Python. You’ll probably get stuck, get bored, and give up. Set out to build something you like, or explore some data you care about, and figure out what you need to learn to make that happen. And don’t go it alone; ask your developers for help, or find a community of other learners to collaborate and commiserate with.
+
+http://veltman.tumblr.com/post/64900530026/on-journalism-and-learning-to-code-again
+
+LEARN THE COMMAND LINE, you will save a lot of time and 
+ 
+https://youtu.be/R2_Mn-qRKjA?t=19
+
+
+I digress: 
+
+other resources:
+
+mapshaper.org
+
+
+thanks to http://en.wikibooks.org/wiki/Ad_Hoc_Data_Analysis_From_The_Unix_Command_Line/Counting_Part_2_-_sort_and_uniq
+
+cut -d"," -f4 all.csv | sort | uniq -c
+
+but let's say you needed to convert this data; 
+there's several tools out there; 
+
+
+
+
+

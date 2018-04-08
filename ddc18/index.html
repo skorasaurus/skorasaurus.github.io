@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tools for Map-making </title>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+  <link href='lib/big.css' rel='stylesheet' type='text/css' />
+  <style>
+    .new-shiny { background: #aaaaaa; }
+    .light-text { color: #fff; }
+  </style>
+  <link href='lib/highlight.css' rel='stylesheet' type='text/css' />
+  <script src='lib/highlight.js'></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src='lib/big.js'></script>
+</head>
+<body class='dark'>
+<div> Hi. I'm will. 
+<a href='http://skorasaur.us'>skorasaur.us</a></div>
+
+<div class='center'><em>Open Cleveland</em></div>
+
+<div data-background-image='most_famous_book_in_every_state.png'></div>
+<div>
+    Ceci n'est pas une carte.  
+</div>
+
+<div> All maps lie. </div>
+
+<div> Warning: this presentation contains live demonstrations, possibly bad data and spurrious projections </div>
+<div data-background-image='Selection_050.png'></div>
+
+<div data-background-image='walid.jpg'></div>
+
+<div>Cleaning your data is dirty work</div>
+
+<div data-bodyclass='special-code'><pre><code>csvstack 01.csv 02.csv 03.csv 04.csv > all.csv</code></pre> 
+
+<pre><pre><code>csvgrep -c 4 -r "Residential" redfined2.csv > onlyresidential.csv</code></pre></div>
+
+<div data-background-image='Selection_034.png'></div>
+<div data-background-image='Selection_035.png'></div>
+
+
+<div data-background-image='Selection_050-null-values.png'></div>
+
+<div> <pre> <code> cut -d"," -f6 onlyresidential.csv | sort | uniq -c </code> </pre>
+</div>
+
+
+<div data-background-image='selection_036.png'></div>
+
+<div> colorbrewer </div>
+
+<div data-background-image='Selection_040.png'></div>
+
+<div data-background-image='Selection_044.png'></div>
+
+
+<div> mapbox </div>
+
+<div data-background-image='Selection_028.png'></div>
+
+<div data-background-image='Selection_029.png'></div>
+
+<div data-background-image='Selection_047.png'></div>
+
+<div> geojson.io </div>
+
+<div>mapshaper </div>
+
+<div>web-map-maker </div>
+
+<div data-background-image='everyone-is-winging-it.png'></div>
+
+<div> https://youtu.be/R2_Mn-qRKjA?t=19 </div>
+
+<div>presentation done in: <a href='https://github.com/tmcw/big'>github.com/ tmcw/ big</a></div>
+</body>
+</html>
