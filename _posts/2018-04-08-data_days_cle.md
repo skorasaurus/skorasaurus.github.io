@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tools on map-making at Data Days CLE"
-date: 2018-04-08
+date: 2018-04-08 19:25:06 -0700
 comments: false
 ---
 
