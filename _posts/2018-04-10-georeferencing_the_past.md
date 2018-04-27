@@ -29,10 +29,7 @@ are also displayed on another plat.
 Although the [LOC will eventually be uploading historic Sanborn maps of the entire country](https://www.loc.gov/collections/sanborn-maps/about-this-collection/), they have barely started the state of
 Ohio save for good ole' [(Monroeville)](https://www.loc.gov/collections/sanborn-maps/?fa=location:ohio).
 
-![My helpful screenshot]({{ "/assets/screenshot.jpg" | absolute_url }})
-
-
- [![1912 hopkins image of cleveland](images/2018-04-hopkins-1912-plate_19.png)](https://cdm16014.contentdm.oclc.org/digital/collection/p4014coll24/id/1819/rec/11) 
+ [![1912 hopkins image of cleveland]({{ "images/2018-04-hopkins-1912-plate_19.png" | absolute_url}})](https://cdm16014.contentdm.oclc.org/digital/collection/p4014coll24/id/1819/rec/11) 
 
 As shown in the above image, there's extraneous information (the map scale, the north arrow, the plate number) on each page that would need to be removed or clipped out if I wanted to present them 
 as one congruious map...
@@ -89,50 +86,42 @@ For the resampling method, I used cubic spline and didn't find any noticeable sp
 
 I then downloaded the geotiffs from mapwarper - now georeferenced that have the geographic projection stored within them - so they can be displayed over other modern maps. 
 
-Now I can open the geotiffs in QGIS as raster layers. 
-they matched up pretty well although not perfect (ADD screenshot) and printed them out. I learned that these image were scanned and uploaded as 72ppi and don't print well. Our library didn't save  have the original digital scans (they had since corrected this practice several years ago for other scanned maps) You couldn't read the street names on the printed copy. **Oops**. 
+Now I can open the geotiffs in QGIS as raster layers.
+They matched up pretty well although not perfect (ADD screenshot) and I printed a portion out in QGIS' print composer. And... You couldn't read the street names on the printed copy. I learned that these image were scanned and uploaded as 72ppi and don't print well. 
+**Oops**. Our library didn't save the original loseless digital scans (they had since corrected this practice several years ago for other scanned maps). 
 
 So, more searching to see if we had another map set of the complete coverage of the city of Cleveland. Yes, we did! 
 [volumes one](https://cdm16014.contentdm.oclc.org/digital/collection/p4014coll24/id/1810/rec/11) and [two of the 1912 Hopkins of Cleveland](https://cdm16014.contentdm.oclc.org/digital/collection/p4014coll24/id/1863/rec/12). 
 
 72 PPI images are publicly available but we had 600PPI of these in private digital storage.
 
-https://gis.stackexchange.com/questions/2685/are-there-any-general-rules-of-thumb-for-selecting-a-transformation-for-georefer
+I asked Stephen Titchenal of [railsandtrails.com](http://www.railsandtrails.com/) - an underrated resource for rail maps of the 20th century; he's digitized dozens of maps. He admitted he hadn't stitched together any map as large as I was proposing but recommended photoshop and [Panavue image assembler](http://www.panavue.com/) a since abandonwared windows stitcher but he hadn't stitched together anything as large as I was proposing. Welp. Most of his maps were 300ppi and suitable.  
 
-I asked Stephan from author [rails and trails](http://www.railsandtrails.com/). Who's digitized dozens of maps He recommended photosh(I admit, I stay away from that) but he hadn't stitched together
-anything as large as I was proposing.
+Guides by [Mauricio Giraldo Arteaga, formerly of NYPL](https://www.nypl.org/blog/2015/01/05/web-maps-primer), [National Library of Scotland](http://geo.nls.uk/urbhist/guides_georeferencing.html), and [Lincoln Mullen](https://lincolnmullen.com/projects/spatial-workshop/georectification.html) are great introductions to the basics of georeferencing with mapwarper but they all assume that you're only georeferencing one image at a time and not stitching them together.  
 
-My task: 
+So, now: My task, I ask for readers: 
 
-Given my limited computing power on my work and personal computers (Thinkpad T450s, HP Z240 both with ubuntu) and no more than 16gb of ram); would I be able to work on 1 giant image 
-of all of the items stitched together? 
-
-Maybe I'm being too much to expect to do this on ubuntu
+**Given my constraints:** computing power on my work and personal computers (Thinkpad T450s, HP Z240 both with ubuntu) each no more than 16gb of ram); would I be able to work on 1 giant image 
+of all of the items stitched together? I tried gimp on ubuntu (to be fair it was a 600 PPI) and it was nearly unusable on a single image... 
 
 It wouldn't be realistic to upload about 3gb of images to mapwarper.net...
 
-So, readers: 
+So, readers, I'd love to hear your suggestions and thoughts. 
+
 **I ask a few questions on how to proceed:** 
 
-What would be a suitable resolution to work in, given my two goals? 
+*Given my two goals (a slippy web map and a print map of 24x36inch) would 300PPI be ok for both?* 
 
-I had been thinking: Would I have to do this process twice (once at )
+*In which order should I complete the tasks of cropping/masking the plates, georeferencing the plates, and stitching them together to appear as one image?*
 
-In which order should I complete the tasks of cropping/masking the plates, georeferencing the plates, and stitching them together to appear as one image? 
+*After I georeference them, should CPL provide both georeferenced and non-georefenced items in our digial collection?*  
 
-What about providing both georeferenced and non-georeferenced images to contentdm ? 
-first and 
-have people want to
+Tentatively, I think I'll batch convert (with imagemagick) the images to 300PPI; then crop 1-2 plates of them in gimp (if it's feasible from a memory standpoint), then try to georeference them in qgis. 
 
-Once complete, should we provide both georeferenced and non-georefenced items? 
-
+For sharing georeferenced, 
 I can see both sides whether to add the georeferenced ones because georeferencing is never perfect; it's always a work in progress. 
 
-Guides that I've found by [Mauricio Giraldo Arteaga, formerly of NYPL](https://www.nypl.org/blog/2015/01/05/web-maps-primer), [National Library of Scotland](http://geo.nls.uk/urbhist/guides_georeferencing.html) https://lincolnmullen.com/projects/spatial-workshop/georectification.html
-
-and they are great introductions to the basics of georeferencing with mapwarper. 
-but they all assume that you're only georeferencing one image at a time and not stitching them together.  
-
+I'd appreciate your advice for my next steps and what you've learned if you've done something similar (email is skorasaurus at gmail, the left bar has my social media contacts). I'll share what I've learned later. 
 
 
 Later goals: 
