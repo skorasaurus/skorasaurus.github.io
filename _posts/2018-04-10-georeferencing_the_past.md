@@ -123,19 +123,3 @@ I can see both sides whether to add the georeferenced ones because georeferencin
 
 I'd appreciate your advice for my next steps and what you've learned if you've done something similar (email is skorasaurus at gmail, the left bar has my social media contacts). I'll share what I've learned later. 
 
-
-Later goals: 
-Eventually do cool shit like a historical building inventor
-
-
-
-
-https://cdm16014.contentdm.oclc.org/digital/collection/p4014coll24/id/1831/rec/11
-
-This means, I couldn't use workflows used when capturing drone imagery which assume the images are continguous manner
-
-(as I was writing this post, I remember [mapknitter](https://github.com/publiclab/mapknitter), so I'll look into that...)
-
-
-
-We have a [growing collection of historic maps of Cleveland available online](https://cplorg.contentdm.oclc.org/digital/collection/p4014coll24) but pitifully aren't easy to access (i.e. not able to download an entire collection at once, very limited on some items, poor interface) yet.
