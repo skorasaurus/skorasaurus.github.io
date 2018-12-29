@@ -71,14 +71,23 @@ var annexations = {"type":"FeatureCollection","features":[{"type":"Feature","pro
       });
       myMap.addControl(slider);
 
-      var polygonTimeline = L.timeline(annexations);
+      var polygonTimeline = L.timeline(annexations, {
+        style: myStyle
+      });
 
-      // var polygonTimeline = L.timeline(polygons, {
-      //     // start : moment(from).add(1000, "y").toDate().getTime(),
-      //     // end: moment(to).add(1000, "y").toDate().getTime()
-      // });
+      function myStyle(feature) {
+        return {
+            fillColor: '#7FB2FF',
+            weight: 2,
+            linejoin: 'bevel',
+            opacity: 0.54,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.4
+        };
+      }
 
-      // polygonTimeline.setTime("2080-");
+
 
       polygonTimeline.addTo(myMap);
 
