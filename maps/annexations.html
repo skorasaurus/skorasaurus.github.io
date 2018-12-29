@@ -55,13 +55,13 @@ var annexations = {"type":"FeatureCollection","features":[{"type":"Feature","pro
       //     toggle; 
       // };
 
-      var map = L.map('map-id');
+      var myMap = L.map('map-id');
 
-      map.addLayer(myLayer);
+      myMap.addLayer(myLayer);
       // map.on('load', onMapLoad);
       
       
-      map.setView([41.464856,-81.673737], 12 ); 
+      myMap.setView([41.464856,-81.673737], 12 ); 
 
       var slider = L.timelineSliderControl({
         formatOutput: function(date){
@@ -69,7 +69,7 @@ var annexations = {"type":"FeatureCollection","features":[{"type":"Feature","pro
         },
         end: new Date ("1930-03-31").getTime()
       });
-      map.addControl(slider);
+      myMap.addControl(slider);
 
       var polygonTimeline = L.timeline(annexations);
 
@@ -80,7 +80,7 @@ var annexations = {"type":"FeatureCollection","features":[{"type":"Feature","pro
 
       // polygonTimeline.setTime("2080-");
 
-      polygonTimeline.addTo(map);
+      polygonTimeline.addTo(myMap);
 
       slider.addTimelines(polygonTimeline);
           </script>
