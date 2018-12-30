@@ -72,7 +72,7 @@ responsive_image:
   # [Optional, Default: assets]
   # The base directory where assets are stored. This is used to determine the
   # `dirname` value in `output_path_format` below.
-  base_path: assets
+  base_path: images
 
   # [Optional, Default: assets/resized/%{filename}-%{width}x%{height}.%{extension}]
   # The template used when generating filenames for resized images. Must be a
@@ -86,7 +86,7 @@ responsive_image:
   #   %{width}       Width of the resized image
   #   %{height}      Height of the resized image
   #
-  output_path_format: assets/resized/%{width}/%{basename}
+  output_path_format: images/resized/%{width}/%{basename}
 
   # [Optional, Default: true]
   # Whether or not to save the generated assets into the source folder.
