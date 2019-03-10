@@ -29,10 +29,10 @@ are also displayed on another plat.
 Although the [LOC will eventually be uploading historic Sanborn maps of the entire country](https://www.loc.gov/collections/sanborn-maps/about-this-collection/), they have barely started the state of
 Ohio save for good ole' [(Monroeville)](https://www.loc.gov/collections/sanborn-maps/?fa=location:ohio).
 
-{% responsive_image path: images/2018-04-hopkins-1912-plate_19.png alt: "1912 hopkins image of cleveland" %}
+{% responsive_image path: images/2018-04-hopkins-1912-plate_19.jpg alt: "1912 hopkins image of cleveland" %}
 
 As shown in the above image, there's extraneous information (the map scale, the north arrow, the plate number) on each page that would need to be removed or clipped out if I wanted to present them 
-as one congruious map. [The image in Cleveland Public Library's digital gallery](https://cdm16014.contentdm.oclc.org/digital/collection/p4014coll24/id/1819/rec/11) w
+as one congruious map. [The image in Cleveland Public Library's digital gallery](https://cdm16014.contentdm.oclc.org/digital/collection/p4014coll24/id/1819/rec/11) 
 
 ---
 
