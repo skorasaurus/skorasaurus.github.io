@@ -4,7 +4,7 @@ name: Will Skora's blog
 description: Writing on maps | open data | Cleveland 
 
 # url is currently only used only for the RSS feed in feed.xml
-url: http://skorasaurus.github.io
+url: https://skorasaur.us
 
 # baseurl will often be '', but for a project page on gh-pages, it needs to
 # be the project name.
@@ -47,7 +47,7 @@ responsive_image:
 
   # [Optional, Default: 85]
   # Quality to use when resizing images.
-  default_quality: 100
+  default_quality: 75
 
   # [Optional, Default: []]
   # An array of resize configuration objects. Each object must contain at least
@@ -57,7 +57,6 @@ responsive_image:
     - width: 720
     - width: 900
     - width: 1200
-
 
   # [Optional, Default: false]
   # Rotate resized images depending on their EXIF rotation attribute. Useful for
