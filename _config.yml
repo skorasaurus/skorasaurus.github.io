@@ -36,7 +36,7 @@ timezone: America/New_York
 
 highlighter: rouges
 markdown: kramdown
-plugins: ['jekyll-paginate', 'jekyll-responsive-image']
+plugins: ['jekyll-paginate', 'jekyll-responsive-image', jekyll-feed]
 
 exclude: ['README.md', 'LICENSE']
 
