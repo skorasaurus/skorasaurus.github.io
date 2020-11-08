@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="mapbox/mapbox-gl.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .map-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.8);
+        margin-right: 20px;
+        overflow: auto;
+        border-radius: 3px;
+}
+        #legend {
+        padding: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        line-height: 18px;
+        height: 250px;
+        margin-bottom: 40px;
+        width: 200px;
+        }
+
+        .legend-key {
+        display: inline-block;
+        border-radius: 20%;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map"> </div>
+            <nav id="menu"></nav>
+            <div class='map-overlay' id='legend'><h3>Percentage of Biden Vote: </h3></div>
+       
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="./mapbox/mapbox-gl.js"></script>
+        <script src="data/2020output_1.js"></script>
+<script src="./mapbox/style.js"></script>
+<script src="./js/Autolinker.min.js"></script>
+<script>
+var map = new mapboxgl.Map({
+ container: 'map',
+ style: styleJSON,
+ center: [-81.683349,41.5178322],
+ zoom: 10.2,
+ bearing: 360.0,
+ attributionControl: false
+});
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+map.addControl(new mapboxgl.AttributionControl({
+    customAttribution: '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://github.com/mapbox/mapbox-gl-js" target="_blank">Mapbox GL JS</a>, <a href="https://qgis.org" target="_blank">QGIS</a>, background data, <a href="https://openstreetmap.org">OpenStreetMap </a>, made by <a href="https://skorasaur.us">Will Skora</a>',
+    compact: false
+}));
+var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+
+map.on('click', 'lyr_2020output_1_0', function (e) {
+    var description = '<table>\
+                    <tr>\
+                        <th scope="row">Precinct Location </th>\
+                        <td colspan="2">' + (e.features[0].properties['LOCATION'] !== null ? autolinker.link(e.features[0].properties['LOCATION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['ADDRESS'] !== null ? autolinker.link(e.features[0].properties['ADDRESS'].toLocaleString()) : '') + ', ' + (e.features[0].properties['CITY'] !== null ? autolinker.link(e.features[0].properties['CITY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Precinct: ' + (e.features[0].properties['NAME'] !== null ? autolinker.link(e.features[0].properties['NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Biden Votes: ' + (e.features[0].properties['Biden'] !== null ? autolinker.link(e.features[0].properties['Biden'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Trump Votes: ' + (e.features[0].properties['Trump'] !== null ? autolinker.link(e.features[0].properties['Trump'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Total Votes (includes third-party and write-ins): ' + (e.features[0].properties['Total'] !== null ? autolinker.link(e.features[0].properties['Total'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Trump Vote percentage: ' + (e.features[0].properties['Trump percentage'] !== null ? autolinker.link(e.features[0].properties['Trump percentage'].toLocaleString()) : '') + '&#37;' + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Biden Vote percentage: ' + (e.features[0].properties['biden_percentage'] !== null ? autolinker.link(e.features[0].properties['biden_percentage'].toLocaleString()) : '') + '&#37;' + '</td>\
+                    </tr>\
+                </table>'
+
+    new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(description)
+        .addTo(map);
+});
+
+// add the data to the legend. 
+
+map.on('load', function() {
+  // the rest of the code will go in here
+  console.log("hi mom")
+
+var layers = ['33-50%', '50-62%', '62-74%', '74-87%', '87-98%' ];
+var colors = ['#ff1a01', '#bf1340', '#800d80', '#4006c0', '#0000ff'];
+
+
+for (i = 0; i < layers.length; i++) {
+          var theLayer = layers[i];
+          var color = colors[i];
+          var item = document.createElement('div');
+          var key = document.createElement('span');
+          key.className = 'legend-key';
+          key.style.backgroundColor = color;
+
+          var value = document.createElement('span');
+          value.innerHTML = theLayer;
+          item.appendChild(key);
+          item.appendChild(value);
+          legend.appendChild(item);
+        }
+
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'lyr_2020output_1_0', function () {
+    map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'lyr_2020output_1_0', function () {
+    map.getCanvas().style.cursor = '';
+});
+</script>
+    </body>
+</html>
