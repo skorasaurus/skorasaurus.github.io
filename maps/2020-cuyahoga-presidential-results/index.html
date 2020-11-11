@@ -27,7 +27,8 @@
         width: 10vw;
         padding: 10px;
         min-width: 180px;
-}
+        }
+
         #legend {
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         line-height: 18px;
@@ -63,9 +64,13 @@
 <script src="./mapbox/style.js"></script>
 <script src="./js/Autolinker.min.js"></script>
 <script>
+
+// viral map key
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiY2toZG9sYngzMGNvdjJwdDlpNHBiNW0wdCJ9.fz3vq4LFToNd1pLuY32gMQ';
+
 var map = new mapboxgl.Map({
  container: 'map',
- style: styleJSON,
+ style: 'mapbox://styles/skorasaurus/ckh8200se12m219qipxo7t96c',
  center: [-81.697512,41.439702],
  zoom: 10.3,
  bearing: 360.0,
@@ -116,27 +121,45 @@ map.on('click', 'lyr_2020output_1_0', function (e) {
 // add the data to the legend. 
 
 map.on('load', function() {
-  // the rest of the code will go in here
-  console.log("hi mom")
 
-var layers = ['33-50%', '50-62%', '62-74%', '74-87%', '87-98%' ];
-var colors = ['#ff1a01', '#bf1340', '#800d80', '#4006c0', '#0000ff'];
+    // add another style
 
-
-for (i = 0; i < layers.length; i++) {
-          var theLayer = layers[i];
-          var color = colors[i];
-          var item = document.createElement('div');
-          var key = document.createElement('span');
-          key.className = 'legend-key';
-          key.style.backgroundColor = color;
-
-          var value = document.createElement('span');
-          value.innerHTML = theLayer;
-          item.appendChild(key);
-          item.appendChild(value);
-          legend.appendChild(item);
+    map.addSource('2020output_1', {
+            type: 'geojson',
+            data: json_2020output_1
+    });
+    map.addLayer(
+        {
+        "id": "lyr_2020output_1_0",
+        "type": "fill",
+        "source": "2020output_1",
+        "layout": {},
+        "paint": {'fill-opacity': ['case', ['all', ['>=', ['get', 'biden_percentage'], 33.000000], ['<=', ['get', 'biden_percentage'], 49.859551]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 49.859551], ['<=', ['get', 'biden_percentage'], 61.518325]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 61.518325], ['<=', ['get', 'biden_percentage'], 73.664122]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 73.664122], ['<=', ['get', 'biden_percentage'], 86.549708]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 86.549708], ['<=', ['get', 'biden_percentage'], 98.44358]], 0.507, 0], 'fill-color': ['case', ['all', ['>=', ['get', 'biden_percentage'], 33.000], ['<=', ['get', 'biden_percentage'], 49.859551]], '#ff1a01', ['all', ['>', ['get', 'biden_percentage'], 49.859551], ['<=', ['get', 'biden_percentage'], 61.518325]], '#bf1340', ['all', ['>', ['get', 'biden_percentage'], 61.518325], ['<=', ['get', 'biden_percentage'], 73.664122]], '#800d80', ['all', ['>', ['get', 'biden_percentage'], 73.664122], ['<=', ['get', 'biden_percentage'], 86.549708]], '#4006c0', ['all', ['>', ['get', 'biden_percentage'], 86.549708], ['<=', ['get', 'biden_percentage'], 98.44358]], '#0000ff', '#ffffff']}
         }
+    );
+
+
+
+    console.log("hi mom")
+
+    var layers = ['33-50%', '50-62%', '62-74%', '74-87%', '87-98%' ];
+    var colors = ['#ff1a01', '#bf1340', '#800d80', '#4006c0', '#0000ff'];
+
+
+    for (i = 0; i < layers.length; i++) {
+            var theLayer = layers[i];
+            var color = colors[i];
+            var item = document.createElement('div');
+            var key = document.createElement('span');
+            key.className = 'legend-key';
+            key.style.backgroundColor = color;
+
+            var value = document.createElement('span');
+            value.innerHTML = theLayer;
+            item.appendChild(key);
+            item.appendChild(value);
+            legend.appendChild(item);
+            }
 
 });
 
