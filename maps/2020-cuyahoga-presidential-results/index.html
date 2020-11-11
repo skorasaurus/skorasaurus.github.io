@@ -124,6 +124,9 @@ map.on('load', function() {
 
     // add another style
 
+
+    let colorPalette = ['#ff1a01', '#bf1340', '#800d80', '#4006c0', '#0000ff'];
+
     map.addSource('2020output_1', {
             type: 'geojson',
             data: json_2020output_1
@@ -134,7 +137,7 @@ map.on('load', function() {
         "type": "fill",
         "source": "2020output_1",
         "layout": {},
-        "paint": {'fill-opacity': ['case', ['all', ['>=', ['get', 'biden_percentage'], 33.000000], ['<=', ['get', 'biden_percentage'], 49.859551]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 49.859551], ['<=', ['get', 'biden_percentage'], 61.518325]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 61.518325], ['<=', ['get', 'biden_percentage'], 73.664122]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 73.664122], ['<=', ['get', 'biden_percentage'], 86.549708]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 86.549708], ['<=', ['get', 'biden_percentage'], 98.44358]], 0.507, 0], 'fill-color': ['case', ['all', ['>=', ['get', 'biden_percentage'], 33.000], ['<=', ['get', 'biden_percentage'], 49.859551]], '#ff1a01', ['all', ['>', ['get', 'biden_percentage'], 49.859551], ['<=', ['get', 'biden_percentage'], 61.518325]], '#bf1340', ['all', ['>', ['get', 'biden_percentage'], 61.518325], ['<=', ['get', 'biden_percentage'], 73.664122]], '#800d80', ['all', ['>', ['get', 'biden_percentage'], 73.664122], ['<=', ['get', 'biden_percentage'], 86.549708]], '#4006c0', ['all', ['>', ['get', 'biden_percentage'], 86.549708], ['<=', ['get', 'biden_percentage'], 98.44358]], '#0000ff', '#ffffff']}
+        "paint": {'fill-opacity': ['case', ['all', ['>=', ['get', 'biden_percentage'], 33.000000], ['<=', ['get', 'biden_percentage'], 49.859551]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 49.859551], ['<=', ['get', 'biden_percentage'], 61.518325]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 61.518325], ['<=', ['get', 'biden_percentage'], 73.664122]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 73.664122], ['<=', ['get', 'biden_percentage'], 86.549708]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 86.549708], ['<=', ['get', 'biden_percentage'], 98.44358]], 0.507, 0], 'fill-color': ['case', ['all', ['>=', ['get', 'biden_percentage'], 33.000], ['<=', ['get', 'biden_percentage'], 49.859551]], colorPalette[0], ['all', ['>', ['get', 'biden_percentage'], 49.859551], ['<=', ['get', 'biden_percentage'], 61.518325]], colorPalette[1], ['all', ['>', ['get', 'biden_percentage'], 61.518325], ['<=', ['get', 'biden_percentage'], 73.664122]], colorPalette[2], ['all', ['>', ['get', 'biden_percentage'], 73.664122], ['<=', ['get', 'biden_percentage'], 86.549708]], colorPalette[3], ['all', ['>', ['get', 'biden_percentage'], 86.549708], ['<=', ['get', 'biden_percentage'], 98.44358]], colorPalette[4], '#ffffff']}
         }
     );
 
@@ -143,12 +146,11 @@ map.on('load', function() {
     console.log("hi mom")
 
     var layers = ['33-50%', '50-62%', '62-74%', '74-87%', '87-98%' ];
-    var colors = ['#ff1a01', '#bf1340', '#800d80', '#4006c0', '#0000ff'];
 
 
     for (i = 0; i < layers.length; i++) {
             var theLayer = layers[i];
-            var color = colors[i];
+            var color = colorPalette[i];
             var item = document.createElement('div');
             var key = document.createElement('span');
             key.className = 'legend-key';
