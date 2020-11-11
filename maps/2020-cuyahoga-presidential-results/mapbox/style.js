@@ -10,7 +10,7 @@ var styleJSON = {
         "mapboxmonochrome_0": {
             "type": "raster",
             "tiles": ["https://api.mapbox.com/styles/v1/skorasaurus/ckh8200se12m219qipxo7t96c/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiaEdGTUZWTSJ9.osOC8tWU3bMaNprVNoEu7g"],
-            "tileSize": 256
+            "tileSize": 512
         },
         "2020output_1": {
             "type": "geojson",
