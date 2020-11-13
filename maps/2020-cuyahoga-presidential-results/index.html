@@ -26,7 +26,7 @@
         border-radius: 3px;
         width: 10vw;
         padding: 10px;
-        min-width: 180px;
+        min-width: 120px;
         }
 
         #legend {
@@ -43,12 +43,18 @@
         margin-right: 5px;
         }
 
-        #hover-info {
+        #intro-info {
         position: absolute;
         top: 0; 
         height: 200px;
         margin-top: 5vh;
         }
+
+        /* .mapboxgl-popup-content { 
+            position: relative;
+            z-index: 300 !important ; 
+        } */
+
         </style>
         <title></title>
     </head>
@@ -56,7 +62,7 @@
         <div id="map"> </div>
             <nav id="menu"></nav>
             <div class='map-overlay' id='legend'><h3>Percentage of Biden Vote: </h3></div>
-            <!-- <div class='map-overlay' id='hover-info'><h3>Percentage of Biden Vote: </h3></div> -->
+            <!-- <div class='map-overlay' id='intro-info'><h3>Percentage of Biden Vote: </h3></div> -->
        
         <script src="js/qgis2web_expressions.js"></script>
         <script src="./mapbox/mapbox-gl.js"></script>
@@ -78,7 +84,7 @@ var map = new mapboxgl.Map({
 });
 map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 map.addControl(new mapboxgl.AttributionControl({
-    customAttribution: '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://github.com/mapbox/mapbox-gl-js" target="_blank">Mapbox GL JS</a>, <a href="https://qgis.org" target="_blank">QGIS</a>, background data, <a href="https://openstreetmap.org">OpenStreetMap </a>, made by <a href="https://skorasaur.us">Will Skora</a>',
+    customAttribution: 'Made by <a href="https://skorasaur.us">Will Skora</a> with <a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot;',
     compact: false
 }));
 var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -86,8 +92,7 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 map.on('click', 'lyr_2020output_1_0', function (e) {
     var description = '<table>\
                     <tr>\
-                        <th scope="row">Precinct Location </th>\
-                        <td colspan="2">' + (e.features[0].properties['LOCATION'] !== null ? autolinker.link(e.features[0].properties['LOCATION'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + 'Polling location: ' + (e.features[0].properties['LOCATION'] !== null ? autolinker.link(e.features[0].properties['LOCATION'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (e.features[0].properties['ADDRESS'] !== null ? autolinker.link(e.features[0].properties['ADDRESS'].toLocaleString()) : '') + ', ' + (e.features[0].properties['CITY'] !== null ? autolinker.link(e.features[0].properties['CITY'].toLocaleString()) : '') + '</td>\
