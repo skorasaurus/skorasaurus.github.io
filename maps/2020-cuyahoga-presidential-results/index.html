@@ -8,6 +8,9 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="mapbox/mapbox-gl.css">
         <link rel="stylesheet" href="css/qgis2web.css">
+
+        <meta name="description" content="Voting Share for President-Elect Biden in Cuyahoga County Precinct-Level">
+        <meta name="author" content="Will Skora">
         <style>
         html, body, #map {
             width: 100%;
@@ -17,37 +20,42 @@
         }
 
         .map-overlay {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.8);
-        margin-right: 20px;
-        overflow: auto;
-        border-radius: 3px;
-        width: 10vw;
-        padding: 10px;
-        min-width: 120px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            margin-right: 20px;
+            overflow: auto;
+            border-radius: 3px;
+            width: 10vw;
+            padding: 10px;
+            min-width: 120px;
         }
 
         #legend {
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        line-height: 18px;
-        margin-bottom: 40px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            line-height: 18px;
+            margin-bottom: 40px;
         }
 
         .legend-key {
-        display: inline-block;
-        border-radius: 20%;
-        width: 10px;
-        height: 10px;
-        margin-right: 5px;
+            display: inline-block;
+            border-radius: 20%;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+            opacity: 50%;
         }
 
         #intro-info {
-        position: absolute;
-        top: 0; 
-        height: 200px;
-        margin-top: 5vh;
+            position: absolute;
+            top: 0; 
+            height: 200px;
+            margin-top: 5vh;
+        }
+
+        .mapboxgl-ctrl-attrib a {
+            text-decoration: underline;
         }
 
         /* .mapboxgl-popup-content { 
@@ -56,9 +64,10 @@
         } */
 
         </style>
-        <title></title>
     </head>
     <body>
+        <title>Voting Share for President-Elect Biden in Cuyahoga County, Ohio Precinct-Level </title>
+
         <div id="map"> </div>
             <nav id="menu"></nav>
             <div class='map-overlay' id='legend'><h3>Percentage of Biden Vote: </h3></div>
@@ -143,7 +152,25 @@ map.on('load', function() {
         "source": "2020output_1",
         "layout": {},
         "paint": {'fill-opacity': ['case', ['all', ['>=', ['get', 'biden_percentage'], 33.000000], ['<=', ['get', 'biden_percentage'], 49.859551]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 49.859551], ['<=', ['get', 'biden_percentage'], 61.518325]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 61.518325], ['<=', ['get', 'biden_percentage'], 73.664122]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 73.664122], ['<=', ['get', 'biden_percentage'], 86.549708]], 0.507, ['all', ['>', ['get', 'biden_percentage'], 86.549708], ['<=', ['get', 'biden_percentage'], 98.44358]], 0.507, 0], 'fill-color': ['case', ['all', ['>=', ['get', 'biden_percentage'], 33.000], ['<=', ['get', 'biden_percentage'], 49.859551]], colorPalette[0], ['all', ['>', ['get', 'biden_percentage'], 49.859551], ['<=', ['get', 'biden_percentage'], 61.518325]], colorPalette[1], ['all', ['>', ['get', 'biden_percentage'], 61.518325], ['<=', ['get', 'biden_percentage'], 73.664122]], colorPalette[2], ['all', ['>', ['get', 'biden_percentage'], 73.664122], ['<=', ['get', 'biden_percentage'], 86.549708]], colorPalette[3], ['all', ['>', ['get', 'biden_percentage'], 86.549708], ['<=', ['get', 'biden_percentage'], 98.44358]], colorPalette[4], '#ffffff']}
+        },
+    );
+    map.addLayer(
+        {
+            "id": "lyr_2020output_1_0-line",
+            "type": "line",
+            "source": "2020output_1",
+            "layout": {},
+            "paint": {'line-width': [
+                        "interpolate",
+                        ["exponential", 1.5],
+                        ["zoom"],
+                        14,
+                        0.5,
+                        18,
+                        18
+                    ]}
         }
+
     );
 
 
