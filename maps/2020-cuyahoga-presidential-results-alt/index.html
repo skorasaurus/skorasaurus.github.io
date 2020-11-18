@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="mapbox/mapbox-gl.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+            <nav id="menu"></nav>
+              <div id="distance" class="distance-container"></div>
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="./mapbox/mapbox-gl.js"></script>
+        <script src="data/2020output_1.js"></script>
+<script src="./mapbox/style.js"></script>
+<script src="./js/Autolinker.min.js"></script>
+<script>
+// viral map key
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2tvcmFzYXVydXMiLCJhIjoiY2toZG9sYngzMGNvdjJwdDlpNHBiNW0wdCJ9.fz3vq4LFToNd1pLuY32gMQ';
+
+var map = new mapboxgl.Map({
+ container: 'map',
+ style: 'mapbox://styles/skorasaurus/ckh8200se12m219qipxo7t96c',
+ center: [-81.697512,41.439702],
+ zoom: 10.3,
+ bearing: 360.0,
+ attributionControl: false
+});
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+map.addControl(new mapboxgl.AttributionControl({
+    customAttribution: '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://github.com/mapbox/mapbox-gl-js" target="_blank">Mapbox GL JS</a> &middot; <a href="https://qgis.org" target="_blank">QGIS</a>',
+    compact: false
+}));
+var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+
+map.on('click', 'lyr_2020output_1_0', function (e) {
+    var description = '<table>\
+                    <tr>\
+                        <td colspan="2">' + 'Polling location: ' + (e.features[0].properties['LOCATION'] !== null ? autolinker.link(e.features[0].properties['LOCATION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['ADDRESS'] !== null ? autolinker.link(e.features[0].properties['ADDRESS'].toLocaleString()) : '') + ', ' + (e.features[0].properties['CITY'] !== null ? autolinker.link(e.features[0].properties['CITY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Precinct: ' + (e.features[0].properties['NAME'] !== null ? autolinker.link(e.features[0].properties['NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Biden Votes: ' + (e.features[0].properties['Biden'] !== null ? autolinker.link(e.features[0].properties['Biden'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Trump Votes: ' + (e.features[0].properties['Trump'] !== null ? autolinker.link(e.features[0].properties['Trump'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Total Votes (includes third-party and write-ins): ' + (e.features[0].properties['Total'] !== null ? autolinker.link(e.features[0].properties['Total'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Trump Vote percentage: ' + (e.features[0].properties['Trump percentage'] !== null ? autolinker.link(e.features[0].properties['Trump percentage'].toLocaleString()) : '') + '&#37;' + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + 'Biden Vote percentage: ' + (e.features[0].properties['biden_percentage'] !== null ? autolinker.link(e.features[0].properties['biden_percentage'].toLocaleString()) : '') + '&#37;' + '</td>\
+                    </tr>\
+                </table>'
+
+    new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(description)
+        .addTo(map);
+});
+
+
+
+map.on('load', function() {
+    map.addSource('2020output_1', {
+            type: 'geojson',
+            data: json_2020output_1
+    });
+
+    map.addLayer(
+        {
+            "id": "lyr_2020output_1_0-line",
+            "type": "line",
+            "source": "2020output_1",
+            "layout": {},
+            "paint": {'line-width': [
+                        "interpolate",
+                        ["exponential", 1.5],
+                        ["zoom"],
+                        14,
+                        0.5,
+                        18,
+                        18
+                    ],
+                    'line-opacity': 0.67}
+        }
+    );
+
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'lyr_2020output_1_0', function () {
+    map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'lyr_2020output_1_0', function () {
+    map.getCanvas().style.cursor = '';
+});
+</script>
+    </body>
+</html>
