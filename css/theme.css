@@ -20,8 +20,8 @@ body {
     font-size: 1.3em;
 }
 
-.sidebar a {
-    color: #428bca;
+.sidebar a, .sidebar a:hover {
+    color: #2D6A9F;
 }
 
 .sidebar li {
