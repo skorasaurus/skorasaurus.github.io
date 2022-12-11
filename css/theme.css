@@ -1,3 +1,13 @@
+:: {
+    --main-red-color: #EA215A;
+}
+
+a {
+    text-decoration-color: var(--main-red-color);
+    text-decoration-thickness: .125em;
+    text-underline-offset: 1.5px;
+}
+
 body {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -37,7 +47,7 @@ body {
     margin: 0;
 }
 
-.well h1 {
+.well h2 {
     color: #ee4444;
     font-size: 1.3em;
 }
