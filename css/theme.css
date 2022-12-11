@@ -2,10 +2,18 @@
     --main-red-color: #EA215A;
 }
 
+/* overwritten still by bootstrap */
 a {
     text-decoration-color: var(--main-red-color);
-    text-decoration-thickness: .125em;
-    text-underline-offset: 1.5px;
+    text-decoration-thickness: .155em;
+    text-underline-offset: .1em;
+}
+
+a:hover, 
+a:focus {
+    text-decoration-thickness: .155em;
+    text-underline-offset: .1em;
+
 }
 
 body {
