@@ -68,6 +68,10 @@ body {
     color: #ee4444;
 }
 
+.hr-default {
+    
+}
+
 /*how isn't this default in bootstrap already?!*/
 img {
     max-width: 100%;

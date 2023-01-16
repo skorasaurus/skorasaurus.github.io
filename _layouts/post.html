@@ -6,14 +6,14 @@
             {% include sidebar.html %}
         </div>
         <div class="col-md-9">
-          <div class="article">
+          <article class="article">
             <div class="well">
                 <h1><a href="{{ site.baseurl}}{{ page.url }}">{{ page.date | date: "%b %-d, %Y" }} - {{ page.title }}</a></h1>
                 <div class="post-content">
                 {{ content }}
                 </div>
             </div>
-          </div>
+        </article>
           <div class="pagination">
               {% if page.next %}
                 <a class="btn btn-default" href="{{ site.baseurl}}{{ page.next.url }}" class="next">Newer Post</a>
