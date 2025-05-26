@@ -3,14 +3,20 @@ layout: default
 title: My maps
 ---
 
-
 Here's a portfolio of online maps that I've made or significantly contributed towards. I'm particularly fond of slippy maps and urban areas where people and infrastructure interesect and how they are represented.
 
-Online slippy maps, which offer multiple zoom levels, gives the cartographer, to create visualizations from multiple perspectives (if they so desire) and enable the map reader to see an area in multiple ways that they haven't imagined.
+Online slippy maps, which offer multiple zoom levels, enable cartographer to create visualizations from multiple perspectives (if they so desire) and enable the map reader to see an area in multiple ways that they haven't imagined.
 
 I primarily use Mapbox and leaflet for the map interaction. For the map design, I use a combination of tools: TileMill, Mapbox Studio, Carto, QGIS, and Mapzen's Tangrams. The source code for these are all available, as indicated in the links below.
 
-![View the 2020 Presidential results of Cuyahoga County](/images/2023-01-16-2020_presidential_vote_share-cuyahoga-excerpt.png "Ages of Cleveland Buildings")
+![View the proposed ward boundaries for the City of Cleveland](/images/2024-10-30-proposed_ward_boundaries.jpg)
+
+[View my proposed ward boundaries for the City of Cleveland](2020-cuyahoga-presidential-results/index.html)
+
+How are ward boundaries made for the City of Cleveland? Here's a brief walkthrough of one way that they could be made. 
+
+
+![View the 2020 Presidential results of Cuyahoga County](/images/2023-01-16-2020_presidential_vote_share-cuyahoga-excerpt.png "Cuyahoga County Map of Biden ")
 
 [View the 2020 Presidential results of Cuyahoga County](2020-cuyahoga-presidential-results/index.html)
 
