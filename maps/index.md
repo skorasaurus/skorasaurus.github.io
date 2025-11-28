@@ -11,14 +11,21 @@ I primarily use Mapbox and leaflet for the map interaction. For the map design, 
 
 ![View the proposed ward boundaries for the City of Cleveland](/images/2024-10-30-proposed_ward_boundaries.jpg)
 
-[View my proposed ward boundaries for the City of Cleveland](2020-cuyahoga-presidential-results/index.html)
+[View my proposed ward boundaries for the City of Cleveland](2024-proposed-ward-boundaries/index.html)
 
-How are ward boundaries made for the City of Cleveland? Here's a brief walkthrough of one way that they could be made. 
+How are ward boundaries made for the City of Cleveland? Here's a brief walkthrough of one way that they could be made.
+
+
 
 
 ![View the 2020 Presidential results of Cuyahoga County](/images/2023-01-16-2020_presidential_vote_share-cuyahoga-excerpt.png "Cuyahoga County Map of Biden ")
 
 [View the 2020 Presidential results of Cuyahoga County](2020-cuyahoga-presidential-results/index.html)
+
+
+![View the 2020 Presidential results of Cuyahoga County](/images/2023-01-16-2020_presidential_vote_share-cuyahoga-excerpt.png "Cuyahoga County Map of Biden ")
+
+[View Cleveland's ](annexations.html)
 
 A map displaying the percentage of votes for 2020 Presidential Election, in Cuyahoga County, Ohio by electoral precinct (the enumeration unit). I purposefully chose to highlight the variability of the Biden support thoroughout Cuyahoga County. and I was also on a self-imposed time pressure to publish this shortly after the election (published a few days after the 2020 Election)
 Not my best work but received a fair amount of positive publicity on social media and [cited in the local alt-weekly, the Cleveland Scene](https://web.archive.org/web/20220518071816/https://www.clevescene.com/news/how-did-your-precinct-in-cuyahoga-county-vote-in-the-presidential-election-this-map-will-tell-you-34693781).
@@ -38,7 +45,7 @@ A interactive map of Cuyahoga County Food Pantry and Hot Meal sites. Designed fo
 
 [View The Cleveland Building Ages Map](clebuildings/index.html) -  [code](https://github.com/skorasaurus/clebuildings) 
    
-A map displaying Cleveland's Building Ages. The black base map was designed by Carto. Done in 2015.
+A map displaying Cleveland's Building Ages. The black base map was designed by Carto. Done in 2015. (No longer maintained). 
 
 ---
 
@@ -65,7 +72,7 @@ A relatively simple, muted map style. Use of Pastels and Spring colors. Made in 
 
 [View dtparking](http://skorasaurus.github.io/dtparking/) - [code](https://github.com/skorasaurus/dtparking)
 
-Downtown Cleveland's Public Parking Map; Without any available public data of public parking lots in downtown Cleveland, I manually surveyed them; uploaded them to OpenStreetMap, . First made in 2013. 
+Downtown Cleveland's Public Parking Map; Without any available public data of public parking lots in downtown Cleveland, I manually surveyed them; uploaded them to OpenStreetMap, . First made in 2013.
 
 ![HOT/HDM ma](/images/2015-03-24-hdm-cartocssexcerpt.png "HOT/HDM map")
 

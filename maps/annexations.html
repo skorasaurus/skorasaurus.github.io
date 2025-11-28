@@ -16,6 +16,7 @@
       #map-id{
         width: 100vw;
         height: 80vh;
+        margin-top: 10vh; 
       }
       .leaflet-bottom.leaflet-left{
         width: 100%;
@@ -29,10 +30,10 @@
     </style>
   </head>
   <body>
-<h1>Cleveland's annexation growth through land annexations</h1>
+<h1>Cleveland's Growth Through Land Annexations</h1>
  <p>Cleveland's population growth in the 19th and 20th centuries came not only from people moving to the city but also through the increase of Cleveland's size of land.</p>
-<p> Play the timeline to see the land that's known as the City of Cleveland grow through 1930. </p> Additional annexations after 1930 will be added. 
-Learn more about <a href="https://skorasaur.us/2019/03/cleveland-historical-annexations/"> my efforts to digitize Cleveland's annexations</a> and view the <a href="https://github.com/skorasaurus/cleboundaries"> dataset for Cleveland's annexation boundaries on github</a>
+<p> Play the timeline to see the land that's known as the City of Cleveland grow through 1930. </p> Land annexations after 1930 have not been yet to the map. 
+Learn more about <a href="https://skorasaur.us/2019/03/cleveland-historical-annexations/"> my efforts to digitize Cleveland's annexations</a> and find the <a href="https://github.com/skorasaurus/cleboundaries"> dataset for Cleveland's annexation boundaries on github</a>
 
     <div id="map-id"></div>
 
@@ -114,6 +115,7 @@ var annexations = {"type": "FeatureCollection",
       
       myMap.setView([41.464856,-81.673737], 12 ); 
 
+      // pretty sure that i used https://github.com/skeate/Leaflet.timeline
       var slider = L.timelineSliderControl({
         formatOutput: function(date){
           return moment(date).format("YYYY-MM-DD");

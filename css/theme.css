@@ -1,12 +1,12 @@
-:: {
+:root {
     --main-red-color: #EA215A;
 }
 
-/* overwritten still by bootstrap */
+/* overwritten by bootstrap so, i'm using important, weird */
 a {
-    text-decoration-color: var(--main-red-color);
-    text-decoration-thickness: .155em;
-    text-underline-offset: .1em;
+    text-decoration-color: var(--main-red-color) !important;
+    text-decoration-thickness: .155em !important;
+    text-underline-offset: .1em !important;
 }
 
 a:hover, 
