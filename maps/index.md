@@ -3,9 +3,9 @@ layout: default
 title: My maps
 ---
 
-Here's a portfolio of online maps that I've made or significantly contributed towards. I'm particularly fond of slippy maps and urban areas where people and infrastructure interesect and how they are represented.
+Here's a portfolio of online maps that I've made or significantly contributed towards. I'm particularly fond of slippy maps and urban areas where people and infrastructure interesect in dense areas and how they are represented.
 
-Online slippy maps, which offer multiple zoom levels, enable cartographer to create visualizations from multiple perspectives (if they so desire) and enable the map reader to see an area in multiple ways that they haven't imagined.
+Online slippy maps, which offer multiple zoom levels, enable cartographer to create visualizations from multiple perspectives (if they so desire) and enable a map reader to see an area in multiple ways that they haven't imagined.
 
 I primarily use Mapbox and leaflet for the map interaction. For the map design, I use a combination of tools: TileMill, Mapbox Studio, Carto, QGIS, and Mapzen's Tangrams. The source code for these are all available, as indicated in the links below.
 
@@ -13,22 +13,23 @@ I primarily use Mapbox and leaflet for the map interaction. For the map design, 
 
 [View my proposed ward boundaries for the City of Cleveland](2024-proposed-ward-boundaries/index.html)
 
-How are ward boundaries made for the City of Cleveland? Here's a brief walkthrough of one way that they could be made.
+I outline the criteria for determining Cleveland's ward boundaries and propose a set of boundaries before the 2024 redrawing of ward boundaries by Cleveland City Council.
 
 
 
-
-![View the 2020 Presidential results of Cuyahoga County](/images/2023-01-16-2020_presidential_vote_share-cuyahoga-excerpt.png "Cuyahoga County Map of Biden ")
+![View the 2020 Presidential results of Cuyahoga County](/images/2023-01-16-2020_presidential_vote_share-cuyahoga-excerpt.png)
 
 [View the 2020 Presidential results of Cuyahoga County](2020-cuyahoga-presidential-results/index.html)
 
-
-![View the 2020 Presidential results of Cuyahoga County](/images/2023-01-16-2020_presidential_vote_share-cuyahoga-excerpt.png "Cuyahoga County Map of Biden ")
-
-[View Cleveland's ](annexations.html)
-
 A map displaying the percentage of votes for 2020 Presidential Election, in Cuyahoga County, Ohio by electoral precinct (the enumeration unit). I purposefully chose to highlight the variability of the Biden support thoroughout Cuyahoga County. and I was also on a self-imposed time pressure to publish this shortly after the election (published a few days after the 2020 Election)
 Not my best work but received a fair amount of positive publicity on social media and [cited in the local alt-weekly, the Cleveland Scene](https://web.archive.org/web/20220518071816/https://www.clevescene.com/news/how-did-your-precinct-in-cuyahoga-county-vote-in-the-presidential-election-this-map-will-tell-you-34693781).
+
+![View the 2020 Presidential results of Cuyahoga County](/images/2019-annexation-timeline.gif)
+
+[View Cleveland's Historical Annexations](annexations.html)
+
+
+An animated map displaying the land annexations of the City of Cleveland, Ohio through 1930. Uses Leaflet and Mapbox basemap that I styled. The data was also used (with permission) in the book 'Cleveland in 50 Maps' by Dan Crissman and Evan Tachovsky from Belt Publishing.
 
 ---
 
