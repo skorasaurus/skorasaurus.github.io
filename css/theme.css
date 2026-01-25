@@ -4,16 +4,17 @@
 
 /* overwritten by bootstrap so, i'm using important, weird */
 a {
+    text-decoration: underline; 
     text-decoration-color: var(--main-red-color) !important;
     text-decoration-thickness: .155em !important;
     text-underline-offset: .1em !important;
 }
 
+
 a:hover, 
 a:focus {
     text-decoration-thickness: .155em;
     text-underline-offset: .1em;
-
 }
 
 body {
