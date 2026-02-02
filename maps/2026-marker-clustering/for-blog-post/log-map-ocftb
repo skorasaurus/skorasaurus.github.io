@@ -1,0 +1,1781 @@
+
+
+inspiration: 
+
+https://experience.arcgis.com/experience/5699507c722c4e3682df2e6cf1123da0
+pennsylvania for the book literary map; 
+
+
+(notably, the pennsylvania map, which used ESRI, did not have any marker clustering; which had some minimal negative effect of the marker not ; but also spread their authors across 8-9 different maps (depending on genre) https://experience.arcgis.com/experience/5699507c722c4e3682df2e6cf1123da0/page/Nonfiction - 2025-pennsylvania-literary_map-nonfiction.png)
+so each map did not have as many markers, 
+
+Goal: 
+
+To provide a geographic orientation of where authors are located in the state of Ohio; 
+
+display a list of our authors and be able to provide in-page searching of those by author name and search by their city 
+
+
+
+GOALS: 
+
+1. get markers to appear, manually by inserting the cordinates into the post meta
+2. write function that geocodes the city and takes those coordinates and stores them into the post meta automatically; 
+
+
+
+cpl_google_place_lat
+cpl_google_place_long 
+
+OK, Need to rename it from heritage ; 
+
+also, there are 2 heritage files beign loaded; the heritage-map.js and heritage-map-list
+
+and using list.js to do the list searching; 
+
+but the files were named heritage.php - using a page template 
+https://github.com/clevepl/cpl-org/pull/480/commits/0b600ca1092705c82c78442002a1c4341980393a
+of the post type page; 
+
+if we continue using the heritage - or page template route
+to not have auto-redirects and to have the page at cpl.org/ohio-authors (although i could suppose i could work around it by registering the archive url to some obscure url, then create a url redirect for that obscure url to cpl.org/ohio-authors and create a page with the slug ohio-authors.... )
+
+so i moved things over (things, being the heritage.php) to the archive-cpl_ohio_author.php template 
+
+this does migrate things over, but it breaks list.js; in the list search just doesn't happen anymore; so I had to insert it into 
+
+from 2025-08-20:
+as of 0b600ca1092705c82c78442002a1c4341980393a WITH The git diff patches/2025-08-21-literary-map-progress applied; 
+
+map functionality: 
+able to zoom in, click on a marker and have the marker box show up, 
+things are working, EXCEPT when i am NOT logged in; 
+jquery is not loaded. 
+(that is because, we are not loading jquery anywhere else on the website)
+
+
+i'm also not sure how get_asset_info( 'cpl_google_maps-heritage', 'dependencies' ), is functioning everywhere, how could i add other dependencies if I needed to ? 
+also, I haven't figured out how/where 10up is dequeuing jquery 
+
+(I could manually enqueue jquery again, or rewrite the js code that tyrone wrote, to not use jquery)
+
+so, i decided to manually cite jquery as a dependency; i'm not sure if this 
+
+		wp_enqueue_script(
+			'cpl_google_maps-heritage',
+			CPL_THEME_TEMPLATE_URL . '/dist/js/heritage-map.js',
+			[ 'jquery'],
+			Utility\get_asset_info( 'cpl_google_maps-heritage', 'version' ),
+			true
+		);
+
+but that worked; 
+
+as 3e6915dd6d6a5d9e0c448688b732e4f1e9961cfd on 2025-08-21; 
+
+
+able to zoom in, click on a marker and have the marker box show up, 
+lists all of the ;
+
+using list.js 
+
+
+WOULD NEED TO: 
+
+with elasticpress, filter the elements on the page based on the search input. 
+
+so, wait, this is called instant results, and it sounds like it's only available as a modal. 
+
+
+
+TO store the geocoordinates, 2 ideas: 
+
+a] manually entering into a new custom metabox (via metafield); 
+
+
+
+- this would likely be the less amount of work ?
+
+
+b] automatically relies on fetching the term entered into the custom taxonomy that we have registered
+
+and then this needs to be geocoded; 
+
+and then on post save, get the post's term (for the city); 
+
+(or through an autocomplete like)
+
+
+behind the scenes, geocode that and save it to a meta fields (and have an error if the geocoding is bad); 
+
+(And not run that code if the value of the has not changed ? 
+(because we may want to update the )
+
+
+c] 1] take the value from the field in the ohio_author_ taxonmy field; and automatically input it into another 
+instruct the user to press a 'add to the map' button; 
+
+
+
+does add a manual process, that ? 
+
+(for the initial )
+
+
+
+should also see how it looks with all 400 posts added; 
+
+
+
+
+curl -X POST -d '{"textQuery" : "Kilbourne, Ohio"}' -H 'Content-Type: application/json' -H 'X-Goog-Api-Key: AIzaSyANUpyc-3-y-gNR5ZeWJxzDQ41Voy_fO6s' --referer 'https://cpl.org' -H 'X-Goog-FieldMask: places.id,places.displayName,places.formattedAddress' 'https://places.googleapis.com/v1/places:searchText'
+
+OK, that is successfuly; but doesn't return the coordinates. 
+
+
+curl -X POST -d '{"textQuery" : "Kilbourne, Ohio"}' -H 'Content-Type: application/json' -H 'X-Goog-Api-Key: AIzaSyANUpyc-3-y-gNR5ZeWJxzDQ41Voy_fO6s' --referer 'https://cpl.org' -H 'X-Goog-FieldMask: places.id,places.displayName,places.location' 'https://places.googleapis.com/v1/places:searchText'
+
+yes, this works, and returns the coordinates^^^ 
+
+
+
+ENSURE THAT THE MAP LOADS, WORKS OK WITH 300 markers 
+
+
+
+so, i would for each post, add the 
+wp post meta get 48013 cpl_pointer_post
+wp post meta list $(wp post list --format=ids --post_type=cpl_ohio_author)
+
+
+wp post meta add 48211 cpl_google_place_lat 40.797177 
+wp post meta add 48211 cpl_google_place_long -81.945648
+
+
+cpl_google_place_lat
+cpl_google_place_long
+
+(I made a script for this in list-all-values-for-a-metakey-in-post_type.sh)
+
+
+display all post_titles 
+
+
+date ranges, should now work, with https://github.com/wp-cli/entity-command/pull/520 but in my install of 
+
+
+
+wp post list --post_type=attachment --post_parent=213 --format=ids | xargs -r wp post delete --force
+- deleted all of the images that were attached to the book discussions page; 
+
+
+wp post meta list $(wp post list --format=ids --post_type=cpl_ohio_author)
+
+
+wp post meta add 48224 cpl_google_place_lat "$(seq 38.8 .0004 41.56 | shuf | head -n1)"
+
+
+wp post meta add "$(wp post list --format=ids --post_type=cpl_ohio_author)" cpl_google_place_lat "$(seq 38.8 .0004 41.56 | shuf | head -n1)"
+
+wp post meta add "$(wp post list --format=ids --post_type=cpl_ohio_author)" cpl_google_place_lon "$(seq -84.65 .0004 -80.3 | shuf | head -n1)"
+
+
+random latitude point (returns a random point, between 38.8 and 41.56)
+seq 38.8 .0004 41.56 | shuf | head -n1
+
+seq -84.65 .0004 -80.3 | shuf | head -n1
+
+
+I'm taking the term (name of a city) that the content editors enters into a registered custom taxonomy (hometown) and geocoding it (and then storing that geocode result as post meta) to use elsewhere on my website. I know the process of geocoding and I'm good there; the issue i'm trying to wrap my head around is how to fetch the post's term used for this taxonomy and then send it to my geocoding process (Which expects a string); and where do I store that file in my plugin ? Where should I hook into it? 
+This is not associated with a block but a custom post type; i'm registering the custom post type in php; 
+
+
+what was recommended to me, was using set_object_terms https://developer.wordpress.org/reference/hooks/set_object_terms/
+
+
+https://gutenberg.10up.com/guides/data-api/
+
+maybe use a hook when the 
+https://developer.wordpress.org/reference/hooks/save_post_post-post_type/
+
+
+GOAL:
+
+HOW TO run the function (To geocode-and save)
+
+
+but, i'm trying to find out how this hook is used; sounds like it can run when the term is updated; 
+
+but i'm confused why 
+
+
+		add_action( 'added_term_relationship', array( $this, 'notify_podping_on_series_added' ), 10, 3 );
+
+the notify_podping_on_series_added should run when added_
+
+
+https://wordpress.stackexchange.com/questions/216215/prevent-function-from-triggering-again-when-post-in-specific-category-gets-anoth
+
+says that it added_term_Relationship can run even if there's an error 
+
+
+
+	/**
+	 * Get upcoming events from LibCal.
+	 *
+	 * @param array what it would be? run the action reads the value of cpl_ohio_author_city; then sends it to the geocoding process,
+	 * and save the
+	 *
+	 * OH, and ONLY RUN THIS IF THE current VALUE OF cpl_ohio_author_city than what was saved; do not need to geocode this every time
+	 *
+	 *
+	 * @return array
+	 */
+// add_action( 'added_term_relationship', 'geocode_the_author_city', 10, 3 );
+add_action( 'set_object_terms', 'geocode_the_author_city', 10, 4 );
+
+
+function geocode_the_author_city(int $post_id, $terms, $taxonomy, $fourth) {
+
+	// bail if this post type is not cpl_ohio_author
+	// if ( ) {
+	// $message = "not the ohio author post type!";
+	// error_log(print_r($message, true));
+	// 	exit();
+
+	// }
+
+
+	$message = "masseltov!";
+	error_log(print_r($taxonomy, true));
+	error_log(print_r($message, true));
+}
+
+
+list.js, how we accessed it, early through the dev process, tyrone had taken the bundled/finished version of list.js, minimized it (so it was all on one line) and then placed it into heritage-map.js and the list.js library could be used for filtering the list WITHIN the page; 
+
+shoot, maybe I should just enqueue the list.js like a separate javascript file ?! (well, because it's a 3rd party library like this, those are typically managed through package.json and then importing them )
+
+(explicitly doing wp_enqueue_script() ? );
+
+but i think the issue with that is it won't be copied ove to the dist. 
+
+
+list.js, how we accessed it, early through the dev process, tyrone had taken the bundled/finished version of list.js, minimized it (so it was all on one line) and then placed it into heritage-map.js and the list.js library could be used for filtering the list WITHIN the page; 
+
+but when running npm run lint-js in my repo; it would just hang (the linting operation) for minutes, with no response in the terminal (and yes, the hanging was because of that; i was able to reproduce this hanging by just copying the list.js file's contents into frontend.js in a separate, clean branch of trunk)
+ 
+so, 
+
+I got around it (And it should, because that's how we're )
+running npm install list.js in the themes/cpl folder; 
+(yes, it will update the package.json in the root folder (wp-content))
+
+
+===== 
+Hi, 10UP THAT 
+
+This might be a bit of an edge case but: 
+
+Then, when running `npm run lint-js` ; when I 
+
+Context: I was in a rush, wanted to quickly see how a library (in my case, [list.js](https://github.com/javve/list.js)) would work and I didn't know how to add a 2nd entry point to my JS file 
+
+Meaning, my package.json file includes the following; and 
+
+```
+"entry": {
+      "heritage-map": "./assets/js/frontend/pages/heritage-map.js",
+} 
+```
+
+=============================
+
+
+
+I was going to add list.js as a typical npm package and 
+import { List} from '@list.js';
+
+and then 
+I ran npm install list.js in the themes/cpl folder; 
+
+]]
+
+Uncaught TypeError: o.List is not a constructor
+    at heritage-map.js:1:26179
+
+and list_js__WEBPACK_IMPORTED_MODULE_2__.List is not a constructor
+in chrome 
+
+so, why didn't that work?! 
+I don't know why exactly;
+
+instead of adding 
+
+
+
+
+but according to https://github.com/javve/list.js/issues/559#issuecomment-343984550
+
+
+
+https://temp.cpl.org/wp-content/themes/cpl/dist/js/heritage-map.js
+looks like it does have the list.js (built in there); it
+
+-------------
+
+within 
+
+
+https://temp.cpl.org/wp-content/themes/cpl/dist/js/heritage-map.js
+
+
+
+
+hypothetical test: 
+
+install a new package, completely different and see if it's deployed 
+
+on a different branch, 
+
+npm install chart.js 
+import {CategoryScale, Chart, LinearScale, LineController, LineElement, PointElement} from 'chart.js';
+
+
+https://www.chartjs.org/docs/latest/getting-started/using-from-node-js.html
+---------------------------------------------------------------------------------------''
+ok, 
+
+I did that in plain.local and when i did 
+
+import Chart from 'chart.js';
+
+- i got the typeERROR 
+
+chart_js__WEBPACK_IMPORTED_MODULE_1___.default is not a constructor
+
+
+BUT when i did (at the top of heritage-map.js)
+import { Chart } from 'chart.js';
+
+
+the chart thing worked and loaded. 
+
+SHORTLIST
+
+to repeat, to add a separate library that you want to be enqueued for that file: 
+
+1. within the theme's folder, run
+npm install name-of-the-package
+
+
+2. in the js file that you're loading the file from, 
+the name of the module, or class in this case is 'Chart'; many times the from page is '@googlemaps/name-of-the-package' ; it's not a single entity like it is for chart.js
+
+import { Chart } from 'chart.js';
+
+(And if it's from another file, make sure that in your 
+
+import { Chart } from 'chart.js';
+
+chart.js isn't listed in the entry of the toolkit blow, but say, if you are loading chart.js into the styleguide page, then you'd add 
+import { Chart } from 'chart.js';
+
+at the top of /assets/js/styleguide/styleguide.js
+
+so, in the package.json 
+  "10up-toolkit": {
+    "useBlockAssets": true,
+    "entry": {
+      "admin": "./assets/js/admin/admin.js",
+      "editor-style-overrides": "./assets/js/admin/editor-style-overrides.js",
+      "inline-icon": "./assets/js/admin/inline-icon.js",
+      "frontend": "./assets/js/frontend/frontend.js",
+      "shared": "./assets/js/shared/shared.js",
+      "styleguide": "./assets/js/styleguide/styleguide.js",
+      "print": "./assets/js/frontend/print.js",
+      "google-maps": "./assets/js/frontend/components/google-maps.js",
+      "heritage-map": "./assets/js/frontend/pages/heritage-map.js",
+
+
+
+done in  troubleshooting/2025-08-loading-a-separate-library
+
+---------------------------------
+
+  Parsed request is a module
+  using description file: /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/package.json (relative path: ./assets/js/frontend/pages)
+    Field 'browser' doesn't contain a valid alias configuration
+    resolve as module
+
+when i modified it to: 
+
+import List from 'list.js';
+
+
+But I was successfully able to reproduce 
+
+BUT DONT' NEED TO DO IF I 
+
+
+ok, need to 
+
+i found and 
+
+installed the package in ; 
+
+and then in top of heritage.js 
+
+import { MarkerClusterer } from "@googlemaps/markerclusterer";
+
+
+
+https://github.com/googlemaps/js-markerclusterer/blob/main/examples/defaults.ts
+- this is typescript, can't use
+
+
+
+i should also put list.js in a separate file, b/c npm run lint-js hangs when I run it and the list.js library or load it separately; because tyrone had literally just copied the list.js bundle into heritage-map.js file. 
+
+BUT, I don't think that list.js package supports node v22 ?
+
+
+https://www.npmjs.com/package/list.js-fixed
+
+
+========================
+as of https://github.com/clevepl/cpl-org/pull/480/commits/045d11ecbf88f8e1fde342423b0bba4e39424847 when list.js is listed as a package, tyrone gets 
+which had 
+
+
+ERROR in ./assets/js/frontend/pages/heritage-map.js 5:0-27
+Module not found: Error: Can't resolve 'list.js' in '/Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/assets/js/frontend/pages'
+resolve 'list.js' in '/Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/assets/js/frontend/pages'
+  Parsed request is a module
+  using description file: /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/package.json (relative path: ./assets/js/frontend/pages)
+    Field 'browser' doesn't contain a valid alias configuration
+    resolve as module
+      /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/assets/js/frontend/pages/node_modules doesn't exist or is not a directory
+      /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/assets/js/frontend/node_modules doesn't exist or is not a directory
+      /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/assets/js/node_modules doesn't exist or is not a directory
+      /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/assets/node_modules doesn't exist or is not a directory
+      looking for modules in /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/node_modules
+        single file module
+          using description file: /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/package.json (relative path: ./node_modules/list.js)
+            no extension
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/node_modules/list.js doesn't exist
+            .tsx
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/node_modules/list.js.tsx doesn't exist
+            .ts
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/node_modules/list.js.ts doesn't exist
+            .js
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/node_modules/list.js.js doesn't exist
+        /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/cpl/node_modules/list.js doesn't exist
+      /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/themes/node_modules doesn't exist or is not a directory
+      looking for modules in /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/node_modules
+        single file module
+          using description file: /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/package.json (relative path: ./node_modules/list.js)
+            no extension
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/node_modules/list.js doesn't exist
+            .tsx
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/node_modules/list.js.tsx doesn't exist
+            .ts
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/node_modules/list.js.ts doesn't exist
+            .js
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/node_modules/list.js.js doesn't exist
+        /Users/tyrone.fonraine/Local Sites/cpl/app/public/wp-content/node_modules/list.js doesn't exist
+      /Users/tyrone.fonraine/Local Sites/cpl/app/public/node_modules doesn't exist or is not a directory
+      /Users/tyrone.fonraine/Local Sites/cpl/app/node_modules doesn't exist or is not a directory
+      /Users/tyrone.fonraine/Local Sites/cpl/node_modules doesn't exist or is not a directory
+      /Users/tyrone.fonraine/Local Sites/node_modules doesn't exist or is not a directory
+      looking for modules in /Users/tyrone.fonraine/node_modules
+        single file module
+          using description file: /Users/tyrone.fonraine/package.json (relative path: ./node_modules/list.js)
+            no extension
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/node_modules/list.js doesn't exist
+            .tsx
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/node_modules/list.js.tsx doesn't exist
+            .ts
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/node_modules/list.js.ts doesn't exist
+            .js
+              Field 'browser' doesn't contain a valid alias configuration
+              /Users/tyrone.fonraine/node_modules/list.js.js doesn't exist
+        /Users/tyrone.fonraine/node_modules/list.js doesn't exist
+      /Users/node_modules doesn't exist or is not a directory
+      /node_modules doesn't exist or is not a directory
+
+
+========================
+SHORTLIST: 
+
+With over 300 authors and an associated town and not anything more specific; we can either: 
+
+- create 1 marker for each town (but then we would need to style the marker different depending on the number of authors associated with that town/city)
+
+- Use marker clustering: 
+the goal with markerclustering, with adding one marker on the map for each author whose city would be geocoded (to the same, arbitrary point within that city's boundaries; (I didnt' want to assign a random point within a city's boundaries for every author author, because with that placement, people would think that a particular geographic location (where the singular marker is located) in the city would have meaning to the author (for example, 3 markers within a small town; one is randomly placed within a field, another may be randomly placed in on a street, the map viewer would think maybe the author (of that marker) was associated with). 
+
+Even if we do place every marker at a random point, the map would be extremely cluttered; h
+
+hence, with 
+; the idea with the markercluster as well is that with larger markerclusters, map viewers would be able to geographically which areas (geographically) have more authors and then browse by  georaphic areas; and zoom into particular areas denoting the number of authors in a particular area (the number would be placed on a markercluster and then when either zooming in on the map or clicking on the markercluster, more markers would appear (for the each city) or if they were already zoomed in enough, the )
+
+https://docs.mapbox.com/mapbox-gl-js/example/cluster-html/
+
+
+see 2025-09-24-markercluster-example-leaflet.png as an example 
+
+using https://github.com/googlemaps/js-markerclusterer, a separate library
+
+git diff > patches/2025-09-03-trying-to-markercluster
+
+and the AdvancedMarkerElement, that class is still in the google maps core js file; I thought that i might need to use that class for the markerClusters, but figured out I don't, 
+https://github.com/googlemaps/js-markerclusterer/blob/main/examples/config.ts
+
+the examples that exist for loading google maps markercluster 
+
+use async, which i'm not familiar with at all: 
+
+https://developers.google.com/maps/documentation/javascript/examples/marker-clustering
+https://developers.google.com/maps/documentation/javascript/infowindows
+(it does, in https://github.com/googlemaps/js-samples/blob/2683f7366fb27829401945d2a7e27d77ed2df8e5/dist/samples/infowindow-simple/docs/index.html)
+
+
+
+
+in this example - it doesn't show how the core google maps library is loaded, grr! 
+https://github.com/googlemaps/js-samples/blob/main/samples/marker-clustering/index.ts 
+
+and i tried to patch together a js file loading the markercluster library to use async techniques as described in the above links as well as use the https://github.com/googlemaps/js-markerclusterer library (an example of that patches/2025-09-03-markercluster-as-async
+
+but I learned (actually through chatgpt!) that I don't think possible to use the two techniques together 
+
+(the techniques being: loading the core google maps JS library like insert the following )
+(import { Loader } from '@googlemaps/js-api-loader';)
+
+other technique, using async like at https://github.com/googlemaps/js-samples/blob/main/samples/marker-clustering/index.ts
+and then 
+
+
+(or it's loaded https://developers.google.com/maps/documentation/javascript/examples/marker-clustering#maps_marker_clustering-html)
+
+
+
+OK, not sure how i missed this before, but i did find; https://github.com/googlemaps/js-markerclusterer/blob/main/examples/defaults.ts
+
+
+and this was using the "@googlemaps/js-api-loader";
+
+but markerCluster was not being loaded with 
+
+
+SO, next strategy, to follow this example, 
+
+
+
+import { MarkerClusterer } from a src file
+
+https://github.com/googlemaps/js-markerclusterer/blob/main/examples/defaults.ts
+import { Loader } from '@googlemaps/js-api-loader';
+
+
+OK, 
+
+I got https://github.com/googlemaps/js-markerclusterer/tree/main/examples 
+
+loaded on the website; for accessibility testing of the markerclusters; 
+(I to install the package on npm, then start the developer server which rebuilt, the changes that i made, 
+
+(see ~/prg/js-markercluster/public) ; you will also need to put in the KEY; 
+
+and see your changes locally, npm run dev;
+
+AIzaSyANUpyc-3-y-gNR5ZeWJxzDQ41Voy_fO6s
+and then serve those files up on 127.0.0.1. 
+
+
+
+NPM RUN DOCS for the changes to take place 
+so that you can them copy and serve them up to another (like the website)
+and you copy over s
+
+Screencast from 12-02-2025 03:13:54 PM.webm
+
+shows the behavior, but if there are multiple markers with the same geography there; 
+
+IS another maps example; 
+https://visgl.github.io/react-google-maps/examples/marker-clustering
+
+
+In the official examples, a keyboard user can't access access an individual marker; only marker clusters
+https://developers.google.com/maps/documentation/javascript/examples/marker-clustering
+
+(BIG DOH! IN My initial testing before writing this blog post; I thought the marker ; oh wait, I was only testing for marker clusters, and all markers clusters are able to be accessed by keybaord
+
+
+
+---------------------------------
+
+but now, i need to also test them together, with the markerclustering with the infowindows as well (that would display, hey, which )
+
+https://github.com/googlemaps/js-samples/tree/main/dist/samples/marker-clustering
+
+and ensure if they have multiple, identical points, that they will sprawl out, and 
+https://github.com/googlemaps/js-markerclusterer/issues/1024
+- (FOR ME, the number of points does correctly display in the markercluster (e.g. will say the number '11 '))
+
+to reproduce: 
+
+use https://github.com/googlemaps/js-markerclusterer
+
+apply the git diff ~/prg/2025-09-05-marker-cluster-modifications to the file, 
+or 2025-09-15-marker-cluster-modifications
+
+then follow directions in the repo to locally (https://github.com/googlemaps/js-markerclusterer
+) (npm run dev)
+
+and I couldn't access the markers that were not clustered keyboard. 
+
+YES, WAS ABLE TO GET AN EXAMPLE OF THE MARKER CLUSTER library TO WORK locally, but it doesn't spider; 
+
+resources: 
+https://www.frank.computer/publications/
+
+SHORTLIST: 
+https://github.com/googlemaps/js-markerclusterer assumes that there is there is only 1 marker at each point, so if you have 11 markers (because we were going to place all authors for a particular town at the same coordinate; b/c otherwise, readers may assume, if there's a marker for X in one part of the city, and the other author was associated with a particular part of town, all for the same others' cities at the same point, ) ; 
+/home/skors/Pictures/Screenshots/2025-09-08-marker_cluster.png 
+
+- if you click or open the markercluster; only a single marker displays; 
+there is no spidering and remember, the spidering is not built into google markercluster :/ 
+
+(On futher reflection - Eventually, we could work around this, by detecting, that if there is a marker already at that coordinate, then modify the existing marker's HTML popup to display the all ; but I'm thinking this still won't work because of how marker clusters works; I don't know if we'd be able to make a pop-up for a markercluster itself, and then modify it? )
+
+(as a result, was my exploration into marker spidering)
+
+BLOG POST AND STATE OF THE AUTHORS 
+
+LEDE, argument: 
+
+Marker Clusters, a common tool to show severely impede accessibility in most mapping libraries*
+
+(leads me to be, should maps be displayed for those who are not visible; with the ; should the markers be announced in a certain order, northwest to southeast or ? )
+
+Preface
+At my work, we're redesigning a landing page of our Ohio Authors Initiative that highlights the lives of over 300 Ohio authors, each with individual biographies (like this one of Amy Braunschweiger https://cpl.org/ohio-author/amy-braunschweiger/) 
+and we want to map that shows the geographic distribution of these notable Ohio authors. We have each author already associated with a particular town or city where they were born in or lived. 
+
+
+Inspired by the maps made by the Pennsylvania Center for the Book: 
+https://experience.arcgis.com/experience/5699507c722c4e3682df2e6cf1123da0 
+
+
+our Literature Department wanted a map and I thought, yes, communicating a map would be effective to communicate that: 
+
+- these Ohio Authors are spread geographically all over Ohio; with the 3Cs dominating as you'd expect; with college towns like Athens, Yellow Springs, Kent, and Oberlin punching up
+
+- provide a geographic orientation for patrons to access displaying the authors on a map with the Ohio place they're most associated with, would allow readers to zoom into a particular and browse all authors in Northeast Ohio, instead of thinking of and searching by each city). 
+
+How do we do this with a map? 
+
+My initial thought, given the contraints in the existing data set: 
+
+- Each Author has an associated town/city associated with it (determined by our librarians, based on where they lived or grew up)
+
+For context, each author has their own dedicated 'page' and we can assign any city with it. 
+(In WordPress talk, we have a custom post type, ohio_author and there is a custom taxonomy named ohio_author_city; a couple custom fields (with their date of birth, date of death), then in the back end, I'll geocode that that city and then store the lat/lon for each post, as  custom fields, then fetch those custom fields)
+
+how to display hundreds of markers in a map that is accessible for all of our patrons so they could geographically browse the locations of Ohio Authors? 
+
+Our anticipation was that we could build a map and that marker cluster; having build maps in the past, I knew that markers were keyboard accessible (or I thought!) . 
+
+
+For context, 
+With web maps, Marker Clusters have become to group large amounts of markers when you want to want to represent all points to the user without overwhelming the user. and are in LEaflet (https://github.com/Leaflet/Leaflet.markercluster), google maps, mapbox, and https://mapsplatform.google.com/resources/blog/how-cluster-map-markers/ (ESRI calls them point clusters - https://www.esri.com/arcgis-blog/products/js-api-arcgis/mapping/8-ways-to-style-point-clusters-on-the-web
+
+https://www.sebastianmeier.eu/publications/the-marker-cluster/
+
+Rethinking the Usage and Experience of
+Clustering Markers in Web Mapping (https://dl.acm.org/doi/abs/10.1007/978-3-030-50020-7_1)https://sonar.ch/global/documents/87038
+
+Admittedly, I instantly thought of marker clustering as the way to represent all of those markers on the map; the places to designate 
+geospatially where these authors were located. 
+
+(Insert a quick, visual example of marker clusters)  https://www.jonahadkins.com/cartography/esri/leaflet/2017/06/14/marker-cluster
+
+In our case with 
+the goal with marker clustering, with adding one marker on the map for each author whose city would be geocoded (to the same, arbitrary point within that city's boundaries; 
+(I didn't want to assign a random point within a city's boundaries for every author, because with that placement, people would think that a particular geographic location (where the singular marker is located) in the city would have meaning to the author (for example, 3 markers within a small town; one is randomly placed within a field, another may be randomly placed in on a street, the map viewer would think maybe the author (of that marker) was associated with); and a randomly placed marker that is on eastern edge of one city Y and then a randomly placed marker that is on the western maybe very geographically close 
+
+
+Screenshot from 2025-12-02 13-50-11.png
+- is the hundreds of markers on the map; 
+
+My initial approach was to use Google Maps library because our location map ((https://cpl.org/locations) are based on Google maps and ) are based on it and there's some existing code for loading markers 
+
+So I began to get some proof of concepts down, a more simpler example, before I integrate into our project; because: I wanted to make sure the marker clusters are keyboard accessible. 
+
+Keyboard accessibility, one of the WCAG (Web Accessibility Guidelines); is ensuring that all content. The map community has some (that's for another blog post) has some ways to go on that. 
+
+While most users will use a mouse or their hand to tap and open a marker cluster; we should not assume that all users place the cursor or I cannot assume (no should you as a web developer) do not design your products so that a person could only use a mouse to access the info. 
+
+
+Tab is typically used at the go-to keyboard key to cycle between interactive elements* (links, buttons, form fields like search bars, )
+
+and that we would have 12 marker on top of each other; 
+
+
+So, to recap: 
+
+Have on each marker, allow the user to open the marker (or markercluster) (through a marker pop-up) to view the list of authors associated with that city. 
+
+
+Google Maps Marker Clusters Performance: 
+
+- Frustrating as a developer and for accessingby the keyboard
+
+I forked the google maps' markercluster library https://googlemaps.github.io/js-markerclusterer/ and use 
+
+defaults/index.html (in ; use the - SHARE THE CODE EXAMPLE ) (https://github.com/skora-cpl/js-markerclusterer/commit/74af3ebd838a49911a16ec3bb091e7465031f46d) and the directions to run it; using that code example, my code example, as of you can't keyboard interface to the marker clusters) (had my examples, before i make more https://github.com/skora-cpl/js-markerclusterer/tree/2025/12-ecp robust examples with akron markers, so that there's more than just two to tab through)
+
+I couldn't keyboard or access the single marker; we have dozens of towns ; so just a single marker would be necessary;(Screencast from 01-02-2026 04:53:19 PM.webm)
+and this is before I even added the pop-up window! 
+
+BUT - that behavior is intentional: 
+
+I thought, maybe because I haven't added the pop-up window yet, that's why you couldn't I hadn't made any interactivity for the markerCluster. 
+
+BUT NO - markers in google maps do not recieve keyboard focus by default and that is intentional: 
+
+OMG, they don't make the markers tabbable by default?! (Markers are not tabbable by default according to a june 2021 blog post by then google employee Chris Shull https://mapsplatform.google.com/resources/blog/improved-accessibility-maps-javascript-api/)
+
+I can partially understand where they're coming from: perhaps their rationale was that if there's no additional information like in a pop-up on a marker, why have the focus on the marker; but I disagree. 
+The markers themselves contain information themselves - where the particular marker or point is located - and we should want to communicate that information. When you use a screen reader device, when you focus "cluster of X markers" without any connotation to its location geographically. 
+
+if someone is visually impaired, may they want to know 'how many markers are appear on the map in the first place, or where is that marker even placed (although maybe that information would be better encoded outside that); 
+
+worst case, someone can skip it and tab over it. 
+
+I realize OK, I NEEDED TO ADD THE "gmpClickable: true" to the AdvancedMarkerElement for individual markers to be accessed by the keyboard; I found it odd that markerclusters could be accessed by keyboard by default, but individual markers are not.. 
+
+at this point (https://github.com/googlemaps/js-markerclusterer/commit/e5a2eada03215454ffb4a7bb49ee251f66a1401f) my markers were now focusable by keyboard, 
+
+
+export function createMarker(map: google.maps.Map, lat: number, lng: number) {
+  if (MarkerUtils.isAdvancedMarkerAvailable(map)) {
+    return new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: { lat, lng },
+      gmpClickable: true,
+      title: `i'm a chump and ${name}`,
+    });
+
+
+i needed to figure out how to create the event listener pop-up that would be for each marker so when the marker was clicked on, or opened; the information from the pop would display there!
+
+(using the https://github.com/skora-cpl/js-markerclusterer/tree/2025/12-ecp
+
+and 
+has an example, which is done with forEach, 
+https://developers.google.com/maps/documentation/javascript/advanced-markers/accessible-markers
+
+and in that code example, (accessible-markers above link; but I don't know how to import the 
+
+ok, so, i just needed to create a new instance to get the pop-up/infowindow a-working and I did that in google.maps.infoWindow is not a constructor
+
+but added the pop-up infoWindow accessibility in https://github.com/skora-cpl/js-markerclusterer/commit/83cc7e1b404b9386d5f36d7fe4e9c6a4a4fb64d5
+
+And here's where I get tripped up: 
+
+Ok, in earlier commit - https://github.com/skora-cpl/js-markerclusterer/commit/37b6655b5a4b48c2e817e7076a0dfb54e7fbfebd from 2025-12-22; 
+you can tab to the marker clusters but not to the individual markers themselves 
+
+ok, in commit  - https://github.com/skora-cpl/js-markerclusterer/commit/e5a2eada03215454ffb4a7bb49ee251f66a1401f - from 2025-12-25; 
+the individual markers are now tabbable BUT you cannot tab to the markerclusters! 
+
+ok, in this commit - https://github.com/skora-cpl/js-markerclusterer/commit/83cc7e1b404b9386d5f36d7fe4e9c6a4a4fb64d5 from 2025-12-30;
+- yes, I CAN CONFIRM, YOU CAN TAB TO THE MARKERCLUSTERS AND THE INDIVIDUAL MARKER IN THIS;
+(THIS IS EVEN IN FIREFOX LINUX; this is when running `npm run dev` of this repository...)
+(ok,)
+
+if I want to upload them to another like a server; then I run `npm run docs` in js-markerclusterer; 
+which then builds those files, and places them into a 'public' folder of js-markerclusterer; 
+I can tab to the but ; see the video at 2025-01-07 in my screenrecordings (on my computer) yes, it is possible.
+
+
+git push myfork 2025/12-ecp
+
+BUT IN THIS EXAMPLE - YOU CAN TAB TO THE MARKER CLUSTERS AND THE POP-UP 
+In this example, https://developers.google.com/maps/documentation/javascript/marker-clustering - 
+
+at https://developers.google.com/maps/documentation/javascript/marker-clustering
+(on firefox, in a troubleshooting profile, linux, i cannot tab to the individual marker -- wrong ; but I CAN IN CHROME)
+(i can, it's just weird)
+
+
+
+
+ALSO, THE MAXZOOM LEVEL, WE DON'T WANT IT TOO FAR ZOOM; 
+
+but when there's a marker cluster, You cannot open it; the marker cluster navigation, doesn't seem very consistent to me ? 
+
+SHORTLIST 
+
+SO, where I'm at right now: 
+
+As of MY last commit , but with the markerclustering library, there's no way to access the clusters; (I think)
+
+https://github.com/skora-cpl/js-markerclusterer/commit/c25558b740d36903d930af8afe187debeb7c7198; 
+- At this commit, I need to access every markers' contents 
+
+
+Other libraries: 
+
+https://docs.mapbox.com/mapbox-gl-js/example/cluster/
+
+https://maplibre.org/maplibre-gl-js/docs/examples/create-and-style-clusters/
+
+Mapbox and Maplibre.GL's marker clusters are not keyboard accessible, violating one of the most basic; providing access to a user who only has access to a keyboard cannot zoom or browse, none of the elements within the map are can be accessed by a keyboard! 
+
+the lack of marker accessibility is mentioned in https://github.com/mapbox/mapbox-gl-js/issues/11763 and it was recently resolved in Maplibre
+(there is the other library, )
+https://github.com/malwoodsantoro/a11y-map-gl
+
+Leaflet: 
+
+Leaflet is likely my next option that I'll thoroughly try. This Leaflet Map from the little free library utilizes marker clusters 
+
+Other approaches: 
+
+Spidering is another method that i had thought of as well but the google maps' spidering library is not 
+
+and also fails 
+
+this is using leaflet (And is tabbable! omg)
+https://littlefreelibrary.org/about/book-bans/book-ban-map/
+
+
+-------------------------------------------------
+and alt: spidering1 
+
+(maybe that - the tabbing is disabled unless there are pop-ups? maybe that was the issue for mapbox and maplibre libraries, the markerclusters should always be tabbable by default, to allow patrons to )
+
+(And to increase the the size of the marker, visit https://developers.google.com/maps/documentation/javascript/advanced-markers/basic-customization#add-title-text)
+
+Spidering is another method of 
+(originally at that point, I thought, I then thought, let's do spidering instead, )
+An alternative to the marker cluster would be spidering: which when clicked, would open the ; 
+
+I briefly looked into and found https://github.com/jawj/OverlappingMarkerSpiderfier although 
+
+OverlappingMarkerSpiderfier/demo-2.html at gh-pages · jawj/OverlappingMarkerSpiderfier 
+Hasn't been updated for 8 years (there is a fork though https://github.com/jawj/OverlappingMarkerSpiderfier/pull/181)
+
+Additionally, it would ; in some cases, requiring people to open each individual ; so from a UX perspective as a well, I nixed spidering as a viable option. s
+
+HAS LINKS TO THE EXAMPLES 
+
+So at point, after the spiderfier library was also failing common accessibility tests, as did the marker clustering, I felt stucky. 
+
+
+
+----------
+
+Hi Will, 
+
+Happy Holidays; I hope you've been well. 
+
+As I shared a few months ago, Tyrone and I are working with the Literature Department to create a landing page highlighting their Ohio Authors initiative and the mini biographies that the Lit. Department has written for each author. Each author has been associated with a town or city where they were born or lived (the 363 authors come from 120 towns throughout the state). 
+
+The page is now available at http://cpl.org/ohio-authors 
+
+To accompany the landing page: Don (Boozer) wanted a map: 
+the map would communicate the geographic diversity of our authors, that the authors are from geographically all over the state, some college towns like Kent, Athens, Oberlin, with numbers higher than you may expect. A map also enables you to learn which authors are from a particular region or area; which authors from places nearby Cleveland, all without having to know what towns are near Cleveland (and searching for those towns in the list)
+
+He imaged a map like https://experience.arcgis.com/experience/5699507c722c4e3682df2e6cf1123da0 like Pennsylvania did for their authors. 
+
+I've been thinking: How do we complete those objectives to the patrons who cannot visibly see the map ? Patrons can find out which authors from but they would have to know the cities/town. 
+
+I'm interested to hear your thoughts and approaches. Most mapping libraries that you would see aren't geared for this type of nuance.
+
+Regards,
+Will 
+
+
+I have some approaches to ensure that the points on the map are keyboard accessible which is a start, 
+
+and some other ideas (stating how many authors are at a particular area, along with their names) 
+
+
+
+dI'm really interested to hear your thoughts and . 
+
+and admittedly, i should have had the map more disability centered in the first place, asking blind patrons, how to communicate the geographic diversity of our authors, for someone who may not know where and would want to know, who are the author biographies that are available in northeast ohio, or the ones that are near columbus? 
+
+
+Lastly, If you or know of any sports fans: I learned about onecourt: a device that provides for vision 
+
+and then proceeding from 
+
+
+https://dl.acm.org/doi/abs/10.1145/3301657
+to read-  https://dl.acm.org/doi/abs/10.1145/3170427.3185373
+
+https://docs.mapbox.com/mapbox-gl-js/example/cluster/
+
+https://maplibre.org/maplibre-gl-js/docs/examples/create-and-style-clusters/
+
+Mapbox and Maplibre.GL's marker clustering is not keyboard accessible at all; violating one of the most basic; providing access to a user who only has access to a keyboard cannot zoom or browse, none of the elements within the map are can be accessed by a keyboard! 
+
+the lack of marker accessibility is mentioned in https://github.com/mapbox/mapbox-gl-js/issues/11763 and it was recently resolved in Maplibre
+
+
+
+https://maps4html.org/HTML-Map-Element-UseCases-Requirements/
+
+(I had written more thorough examples of how OverlappingMarkerSpiderfier fails basic accessibility tests; (not to mention, screen readers), for someone who is using the keyboard; they are not able access all of the markers; once the you open a marker, so  but then they would have to traverse back to the to the list to obtain )
+
+https://developers.google.com/maps/documentation/javascript/marker-clustering#cdn
+
+Mapbox's Marker Clustering example uses the Canvas element - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/canvas
+
+If you go with Mapbox-gl ; the 
+https://github.com/nazka/map-gl-js-spiderfy?tab=readme-ov-file
+
+https://github.com/Leaflet/Leaflet.markercluster has an adequate example: 
+
+
+The order isn't really neatly defined; but 
+
+
+https://medium.com/san-francisco-digital-services/a-template-for-accessible-data-visualizations-ca2ed52f945b
+
+
+Approach 1: 
+
+Marker clusters have been a popular method to display the concentration of markers on a web map. 
+
+Share some examples;
+
+
+Approach 2: 
+
+(wait, if the items are still presented in the the entire list to the left, wouldn't the map in general still be accessible for patrons even if they can't interact with the map? ); in that they are still able to access  ? What would it mean for such a map to be acessible ? would we need to communicate that there are the most in say, like cuyahoga county, or 
+
+--------------------
+  const markers = trees.map(({ geometry }) =>
+    createMarker(map, geometry.coordinates[1], geometry.coordinates[0])
+  );
+
+
+in this example, geometry is the property that the array is being mapped over; (like in a standard geojson file)
+
+Function parameter: Within the map function, geometry serves as a local variable that provides access to the coordinate data needed to create map markers.
+
+
+I was able to get the markerclustering to work (at least in an example); although I need to now; DO THE so, i have to see how they spider out. 
+
+
+
+
+
+As an alternative, instead of having them spider out; 
+
+write ONLY ONE MARKER FOR EACH unique city/town (and check the existing array, if there is already a marker at that lat/lon, don't add another marker there); 
+
+AND THEN display within ; the list of all  ?
+
+
+(even with this way, it still would be over 100 hundred markers, as we have over 100 cities being represented. 
+
+----------------------
+
+BUT I NEED TO IMPLEMENT THE SPIDERING OF THE MARKERCLUSTERS AS WELL; so, that when one of them opens; 
+
+(check it for accessibility)
+
+
+https://github.com/mapbox/mapbox-gl-js/issues/8072
+https://www.leighhalliday.com/mapbox-clustering
+https://medium.com/@tomytubert/mapbox-spiderfy-clusters-without-library-8936d4f45347
+https://github.com/nazka/map-gl-js-spiderfy
+
+
+====
+
+A11Y: 
+https://mn.gov/mnit/assets/Accessibility%20Guide%20for%20Interactive%20Web%20Maps_tcm38-403564.pdf
+
+
+
+AS OF https://github.com/clevepl/cpl-org/pull/480/commits/dbe27b4e865a92b35f790ffcc704e69defbea83e(2025-09-02)
+
+Not all authors are appearing in search results... 
+
+names that don't return any results that have author bios; (on my local copy:
+
+lois
+mildred 
+
+==============
+
+after meeting with mike and don and tyrone in mid september 2025, he wanted to get something public, up and running even if it was not perfect; 
+
+(when i was reporting the issues with the markerclusters earlier )
+
+early/mid september 2025; (I slightly)
+
+
+ALSO list.js search is buggy right now, as recently as dbe27b4 (); entering the term cleveland will return all authors (because the word used for valueNames was too broad of a selector); (@skora-cpl fixed in d974a9e; that was because list.js was looking inside the value of the alt-text attribute which tyrone had originally written as 
+
+and even more important
+If you search for an author's name; only the authors whose name is the first listed (in the list of a city's authors) ist.js only returns the first author in the list associated with that city. -this is a known bug with list.js;
+We're using city as one of the valueItems and city is within the template here;
+
+(that was occurring in  https://github.com/clevepl/cpl-org/pull/480/commits/d974a9eb8ac3ff795fb2f4c277a16b932cf2d8f7
+)
+
+
+I even made a reduced test-case in plain html and javascript of list.js confirming this as well. 
+https://gist.github.com/skora-cpl/94e304b746ba7cb5dd3171a70fa9b9cf
+
+
+NEW GOAL: 
+
+just have in-page filtering so someone could enter a city or the author's name in a search box and results would be returned (an extra special bonus would be also having the map markers update based on the search results, )
+
+(still to try if i could find a workaround in list.js)
+
+
+in list.js, the bug is that we are searching for 2 types of text (city and author names); in the HTML,one of them (the city); in semantic HTML terms, is a parent (or above), the other ()
+
+list.js assumes that your elements that you're searching are in sibling elements (like example 1 at https://listjs.com/docs/);
+for us;
+
+
+instead of 
+         <h3 class="city" tabindex="0">Akron</h3>
+         <ul>
+            <li class="auth"><a href="https://cpl.test/ohio-author/a-van-jordan/"><span class="author-name">A. Van Jordan</span></a></li>
+            <li class="auth"><a href="https://cpl.test/ohio-author/a-van-jordan/"><span class="author-name">A. Van Jordan</span></a></li>
+        </ul>
+
+list.js expects them to be like 
+
+         <ul>
+            <li class="auth"><a href="https://cpl.test/ohio-author/a-van-jordan/"><span class="author-name">A. Van Jordan</span></a></li>
+            <li class="auth"><a href="https://cpl.test/ohio-author/a-van-jordan/"><span class="akron">akron</span></a></li>
+        </ul>
+
+
+(and i tried this in list-)
+
+https://github.com/javve/list.js/issues/290#issuecomment-189448286
+
+
+People did try to work around this as described in that issue aren't appropriate for us, because 
+https://codepen.io/JasonEspin/pen/bdajKo
+- uses radio boxes a way to get around the filtering for some of the classifications; using radio boxes wouldn't be feasible, because we want to filter across over 100 cities
+
+https://codepen.io/wmg481/pen/RRRKdm
+- this doesn't have searching by multiple classes here nor are there nested classes here that are being searched, 
+
+https://codepen.io/bjornmeansbear/pen/RPywzN this is also searching by buttons, which would only be useful if we were filter among like 4 options. 
+
+https://github.com/javve/list.js/issues/290#issuecomment-691744433
+- again, the features that are searched are located within singling elements
+
+
+
+
+if ( $query->have_posts() ) { ?>
+        <ul>
+
+       <?php while ( $query->have_posts() ) {
+          $query->the_post();
+
+          ?> <li class="auth'> 
+          if ( has_post_thumbnail() ) {
+        ?> 
+        '<div class="heritage-thumb">';
+
+
+while i was thinking whether ; i began 
+
+i'm wondering whether to modify the HTML layout
+
+or to create 2 search boxes, one for searching by city, other by author name
+ 
+and i was thinking about modifying the HTML layout; 
+
+so, while i was modifying the html layout; 
+
+I noticed that like 100 queries are currently run;
+
+gathering all of 
+
+<span class="ab-label">1.36s 23.9<small>MB</small> 0.27s 667<small>Q</small></span>
+it's 667 queries; and 
+
+it's written pretty inefficient; should do 1 query of getting all of the posts, and then filtering them inside with php; 
+
+
+
+anyways, i thought, maybe modifying the html layout, and having them be on adjacent sibling; 
+
+so i modified, and did a list-alt1.html in a plain  ; and still 
+
+(and what i did for heritage-map.js; was )
+
+window.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    const options = {
+      valueNames: ['specccial-class', 'author-name'],
+    };
+    const userList = new List('authors', options);
+  }, 500);
+});
+
+while reading over the documentation for the https://github.com/misits/advanced-filter-system?tab=readme-ov-file#search--filtering; 
+
+I had a revelation, put this data in CUSTOM attributes and have searched there; that way, we're not dependent on the DOM structure as much; 
+IT CLICKED; THIS COULD BE DONE, (I THINK, EVEN FOR LIST.JS! )
+OH SHIT, why not use some custom attributes instead ?!? 
+
+(I could have thought of this weeks ago!)
+
+
+(although, I'm )\\
+
+------------------------------------------------------
+so, let's try it, using data attributes with 
+
+window.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    const options = {
+      valueNames: [
+        { name: 'auth', attr: [' data-attribute-author-name', 'data-attribute-city' ] },
+      ],
+    };
+    const userList = new List('authors', options);
+  }, 500);
+});
+
+
+'<li class="auth" data-attribute-city="' . esc_html( $term->name ) . '" data-attribute-author-name="' . get_the_title() . '">';
+
+
+(which resulted in the markup)
+
+
+<ul style="display: none;"><li class="auth" data-attribute-city="Canton" data-attribute-author-name="M. J. Albacete"><div class="heritage-thumb"><img alt="" src="https://cpl.test/wp-content/themes/cpl/assets/images/placeholder-blue.png"></div><a href="https://cpl.test/ohio-author/m-j-albacete/"><span class="author-name">M. J. Albacete</span></a></li>
+
+OK, that RESULTS all cities and names being returned for any search input. 
+
+---------------------------------------
+
+reviewed the other example that I had, and with https://codepen.io/wmg481/pen/RRRKdm
+
+OH THIS EXAMPLE DOES HAVE searching ACROSS elements that are not siblings; the 
+
+        <li class="list--list-item" data-gender="male">
+          <h3 class="name">Jonas</h3>
+          <p class="born">1985</p>
+          <p class="address">953 Lake Square</p>
+        </li>
+
+
+so, I tried 
+
+
+          echo '<li class="auth" attribute-city="' . esc_html( $term->name ) . '" attribute-author-name="' . get_the_title() . '">';
+          if ( has_post_thumbnail() ) {
+            // echo '<div class="heritage-thumb">' . get_the_post_thumbnail(null, 'medium') . '</div>';
+            $thumbnail_id  = get_post_thumbnail_id( get_the_ID() );
+            $thumbnail_url = wp_get_attachment_image_src( $thumbnail_id, 'medium' )[0];
+            $thumbnail_alt = get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true );
+
+            echo '<div class="heritage-thumb">';
+            echo '<img src="' . esc_url( $thumbnail_url ) . '" alt="' . esc_attr( $thumbnail_alt ) . '" class="responsive-thumbnail">';
+            echo '</div>';
+
+          } else {
+
+            $img = get_template_directory_uri() . '/assets/images/placeholder-blue.png';
+
+            echo '<div class="heritage-thumb"><img alt="" src="' . esc_url( $img ) . '" /></div>';
+          }
+          echo '<a href="' . get_permalink() . '">' . '<span class="author-name">' . get_the_title() . '</span></a>';
+          echo '</li>';
+
+
+          which 
+          spit out 
+
+          <li class="auth" attribute-city="Bedford" attribute-author-name="George Bibel"><div class="heritage-thumb"><img alt="" src="http://cpl.test/wp-content/themes/cpl/assets/images/placeholder-blue.png"></div><a href="https://cpl.test/ohio-author/george-bibel/"><span class="author-name">George Bibel</span></a></li>
+
+
+
+window.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    const options = {
+      valueNames: [
+        'author-name',
+        { data: ['attribute-city'] }
+
+      ],
+    };
+    const userList = new List('authors', options);
+  }, 500);
+});
+
+
+ok, that resulted in a 
+
+<div class="heritage-city-single expanded" data-attribute-city="null"><h3 class="city" tabindex="0">Bellefontaine</h3><ul style=""><li class="auth" attribute-city="Bellefontaine" attribute-author-name="Allan Eckert"><div class="heritage-thumb"><img alt="" src="https://cpl.test/wp-content/themes/cpl/assets/images/placeholder-blue.png"></div><a href="https://cpl.test/ohio-author/allan-eckert/"><span class="author-name">Allan Eckert</span></a></li><li class="auth" attribute-city="Bellefontaine" attribute-author-name="James Flora"><div class="heritage-thumb"><img alt="" src="https://cpl.test/wp-content/themes/cpl/assets/images/placeholder-blue.png"></div><a href="https://cpl.test/ohio-author/james-flora/"><span class="author-name">James Flora</span></a></li></ul></div>
+
+where the hell is the data-attribute-city="null" class generated? 
+from ?! 
+
+so, even with using data-attributes, still unable to get the search results to display as intended (entering author names, in the search) 
+
+
+
+(SO, I think i'm giving up on using list.js, and trying out with the advanced-filter-system library - https://misits.github.io/advanced-filter-system
+
+that would allow the goal of a patron in-page filtering based on the cpl_ohio_author_city (one of our taxonomy) - user would enter the term; and the post_title; (The name of the author )
+
+(user would enter in one search box)
+
+const afs = new AFS({
+  containerSelector: '.heritage-authors',
+  itemSelector: '.auth',
+  filterButtonSelector: '',
+  searchInputSelector: '.search',
+  debug: true,
+
+
+SHORTLIST 
+at first, i thought the afs was buggy; because i named a key author-name AND AFS was supposed to search the contents of  data-author-name
+
+and it was successfully searching for city names but not for author names; 
+
+
+so, one of the 
+
+   <li class="auth afs-transition" data-city="Akron" data-author-name="Amanda Flower" 
+    style="visibility: visible; transition-timing-function: ease-in; opacity: 1; filter: none; display: block;">
+    <a href="https://cpl.test/ohio-author/amanda-flower/"><span class="author-name">Amanda Flower</span></a></li>
+
+but the issue is that 
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/data-*
+
+which states "
+If you plan to use HTMLElement.dataset, the portion of the attribute name following the data- can only include characters allowed in JavaScript property names (and hyphens, which will be removed)."
+
+so afs was looking for html elements that had authorname (instead of author-name)
+
+once I renamed the 
+
+
+
+
+worked on a proof of concept to even get working in the css-playground folder, named demo-afs.html 
+
+and it works!
+
+and tested for accessibility; 
+
+the heading levels were also messed up for the afs demo, but fine otherwise. 
+
+For the advanced https://misits.github.io/advanced-filter-system/demo.html?search=nike 
+
+Also issues, there's no link to open more information about particular product (maybe its just their setup, i put a link it in as a card)
+Testing; 
+ONLY annoying thing or thing that I think is missing; for the advanced-filtering-system, after entering the search term, there's no audio notice to state that xx results have been returned;
+
+But good point from scott; b/c should it say the results after typing in 2 characters ? 6 charactesr? That would be interuppting to a user really annoying
+
+On that demo page, visually, it says 2 ITEMS; (after you do filter) ; ALTHOUGH ACCORDING TO SCOTT BELOW, THAT'S AN OK THING IF IT DOESN'T SAY anything 
+
+
+https://www.scottohara.me/blog/2022/02/05/dynamic-results.html
+
+https://a11ysupport.io/
+
+Also did a quick run through of the https://demo.elasticpress.io/collection/ ; didn't find any immediate issues with a11y! hooray
+
+
+
+
+
+=====
+NEXT STEP: (so i can still do the in-page searching)
+
+working on a getting a proof of concept with the AFS (advanced-filter-system) and I did ; 
+
+in ~/prg/css-playground/.html
+ 
+in my test case as well; 
+of 
+
+and now in the heritage-map branch; (USIGN THE 2025-10-16 N
+)
+
+I was struggling to find out why when i entered in a search term; no results; no filtering were happening, or nothing in the console either. 
+
+(But i knew that the library was at least loaded b/c i set its debug mode on (as an option when i first created an object or instance of the AFS library )
+
+when i did console.log(afs) in the console, console said it was not defined
+ 
+
+is because there are 2 layouts (togglable by a button); by default, tyrone set it up to load a list view of the items. 
+this list view had a different  
+
+
+
+2025-10-17-the_ohio_author_list_view.png
+
+and then when i was loading the afs; 
+
+
+then the other issue is that; i think 
+
+the issue is that: 
+
+there were a couple lines stating ; but nothing was returning in the search form when using it; 
+
+
+(mike in said " module features are imported into the scope of a single script — they aren't available in the global scope. Therefore, you will only be able to access imported features in the script they are imported into, and you won't be able to access them from the JavaScript console, for example. You'll still get syntax errors shown in the DevTools, but you'll not be able to use some of the debugging techniques you might have expected to use.")
+
+
+
+
+but now, i just realized this; i think as well; 
+this isn't working because i'm modifying; 
+
+the AFS library is expecting a consistent dom structure; but we're going between 2 different ones! 
+(and even though they're extremely similar, i think they are too different)
+
+it diff > patches/2025-10-20-heritage-map-wip
+when I added a line line 
+
+when i added that line; 
+
+afs.search.search('dayton');
+
+the results are searched!
+
+but when enter a search term in the search-box, no results are returned; 
+
+(ONCE i renamed the searchInputSelector: '.search-filter-afs)
+in the afs; 
+
+I could then now search! (HOORAY! IMPORTANT); 
+
+(BUT AS OF https://github.com/clevepl/cpl-org/pull/480/commits/d4dbfeebffe8cf814e6f0df6c67617b1a9345ee0)
+
+ON THE IMAGE VIEW: 
+
+Every city is still displayed, 
+
+
+on the city list view: 
+
+as of 
+4d6e4e2f72d4a45db80ccc2b3f8a3b60271b69a6:
+
+
+NEXT THINGS TO FIX, goals: 
+
+After a search term is entered and made: 
+
+In the list view; there's no indication of the results to the user; 
+- 
+list is not expanded 
+
+In the image view: 
+the authors matching the search term are display and visible ; but we need to hide the cities (alter the DOM) to not include the cities that do not have any authors in the results. 
+
+I see that there are events available; 
+
+https://github.com/misits/advanced-filter-system?tab=readme-ov-file#event-system
+
+
+
+that commit, I have a callback, and i do events when the search happens, but i need to 
+
+
+
+what happens, for the image view, I 
+
+ok, I see that the hidden class is applied after a search to an element that does not ;
+
+
+github.com/misits/advanced-filter-system
+
+I'm using a package github.com/misits/advanced-filter-system to do some inpage filtering of 
+
+and i have a proof of concept - https://codepen.io/skorasaurus/pen/RNrxWRK
+
+
+GOAL: 
+I am able to successfully enter a search term and only the dom elements (the list items) that are match the search terms display. 
+
+but I also want to be able to hide the parents of items that do not have any search results inside of them. 
+
+oh, so I would do an action that says, go through each heading in the dom, and for the sibling node, <ul> and if none of the children <lihave 
+ 
+because what happens now, is that when a search term is entered (A person's name or )
+
+the results (of the ) display, but 
+
+
+
+
+so like in the example below, even though there are now results for alliance (and that author's name doesn't appear in the result; the city of alliance still appears; ) 
+
+(because the markup on an item (the LI element that is not a search result, (but still appears in the dom)
+
+<div class="heritage-city-single"><h3 class="city" tabindex="0">Alliance</h3><ul><li class="auth afs-transition hidden" data-city="Alliance" data-authorzname="Brinton Turkle" style="visibility: visible; transition-timing-function: ease-in-out; filter: none; display: none;"><a href="https://cpl.test/ohio-author/brinton-turkle/"><span class="author-name">Brinton Turkle</span></a></li>
+</ul></div>
+
+
+CONTRASTING TO an element that does appear because it is included in the search results. 
+
+<li class="auth afs-transition" data-city="Dayton" data-authorzname="Fletcher Knebel" style="visibility: visible; transition-timing-function: ease-in; opacity: 1; filter: none; display: list-item;"><div class="heritage-thumb"><img alt="" src="https://cpl.test/wp-content/themes/cpl/assets/images/placeholder-blue.png"></div><a href="https://cpl.test/ohio-author/fletcher-knebel/"><span>Fletcher Knebel</span></a></li>
+
+so we want a callback that will remove the 
+<div class="heritage-city-single"> 
+so, it does not display, and for all users don't receive results for 
+
+
+THAT WOULD BE USED FOR THE 
+
+
+(UGH, when i have a reduced test case)
+
+
+callback: 
+
+afs.on('search', (data) => {
+
+    var cityList = document.querySelectorAll(".heritage-city-single");
+  console.log(cityList);
+
+// each one will have an unordered list, if 
+
+
+
+https://gitlab.com/cpl/css-playground/-/commit/2ba71c3ed7bfa108b0bd405114d70541c6dd5d68
+
+commit https://gitlab.com/cpl/css-playground/-/commit/fc3436c488628520ca11b4a7ad4d2eca8dc2b61d - this commit on i isolated the h3 and 
+
+after this commit, 
+
+how should I classify or create the conditions/logic that need to loop through each of the list items 
+
+i was thinking; 
+
+i first tried 
+
+afs.on('search', (data) => {
+
+    var cityList = document.querySelectorAll(".heritage-city-single ul");
+    console.log('CITY LIST', cityList);
+
+    // i'm defining theItem for there, it can be 
+    cityList.forEach((theItem) => {
+      //  console.log(theItem.childNodes); // within this item, if any of them do not HAVE the class of 
+       
+        console.log(theItem.children);  
+        // iterate through each of these children, if none of these children have an inline style property named opacity, 
+         // delete the parent dom 
+            children.forEach((eachLi) => {
+               console.log(eachLi);  
+        });
+    })
+
+but in that; that's not what i want: 
+
+in the above code example (which is as of https://gitlab.com/cpl/css-playground/-/commit/410413f5b24226726fb6ee24571bd9a8703891e8; but slightly modified with the above example)
+
+cityList had 7 cities, in it; but within cityList, only the first item in the array of cityLIst did we go through the eachLi; 
+
+still trying to figure out the selector to use; 
+
+
+// if NONE of the children of <class="heritage-city-single"> appear in the search results; then delete the <class="heritage-city-single"> from the DOM. 
+// we are detecting if a child appears in the search results by detecting if an li element has an inline style property named 'opacity'
+
+// for each cityLIst is a HTMLcollection - which is similar to but NOT an array
+// for each item (a UL) in there; 
+// look through each child through the list and see it has an inline style property named 'opacity'
+
+// if there is an Element whose child has an li and one of its classes is not hidden; delete the element, using remove(); 
+/* 
+As an example, if you search for michael; the dom elements for Delaware, Euclid, Delaware in the DOM should be deleted 
+because those cities have no results for the word Michael 
+
+
+
+
+even with ae56759bc120163a521f095f6d4e09b4d4927969
+
+and the example below; 
+
+each child is the li element 
+
+    cityList.forEach((theItem) => {
+      //  console.log(theItem.childNodes); // within each of these (the UL element); 
+      // get their kid/child (the li) and check if the kid does NOT have a class named hidden on it
+            for (const child of theItem.children) {
+               // console.log(kid);
+               // console.log(kid.style);
+               // this does not work, returns an empty node list..
+                console.log(child);
+            }
+        // console.log(theItem);  
+        console.log('end of list');
+        // iterate through each of these children, if none of these children have an inline style property named opacity, 
+         // delete the parent dom 
+    
+
+trying to figure out how to isolate 
+
+in 9cd3d9380d41866b4b86505b4781efb6d0302798 (of css-playground)
+
+
+    cityList.forEach((theItem) => {
+      //  console.log(theItem.childNodes); // within each of these (the UL element); 
+      // get their kid/child (the li) and check if the kid does NOT have a class named hidden on it
+            for (const child of theItem.children) {
+               // console.log(child);
+               // console.log(child.style);
+               // this does not work, returns an empty node list.. console.log(child.querySelectorAll('li'));
+               console.log(child);
+
+
+            }
+
+I was wondering why  console.log(child.querySelectorAll('li')); in the above example was not returning anything; but console.log(child); 
+was; then realized that's because 
+the .children returns HTMLCollection and querySelectorAll expects an element (I think); 
+
+
+so, instead of children; maybe i should use childNodes
+
+
+but             
+
+for (const child of theItem.childNodes) {
+
+               // console.log(kid.style);
+               // this does not work, returns an empty node list.. console.log(child.querySelectorAll('li'));
+               console.log(child);
+
+            }
+
+child was spitting out the raw html in the console, and child is a node list; https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+
+I need to search through these children; (Each child)
+
+
+HOW DO I fetch the elements that have an inline style and only an inline style 
+
+
+
+'[style*="margin"]'
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element/children
+https://www.lenovo.com/us/en/glossary/nodelist/
+
+(continuing to work on this; with css-playground/demo-afs-simplified.html as a reduced test case)
+
+00000000000000000000
+i tried  console.log(child.querySelectorAll[style*="opacity"]);
+adee8a548a5087536309999a9b36188b3075c7c7
+
+WHICH IS below, that doesn't return anything and the  console.log('end of list'); doesn't even happen;
+
+
+afs.on('search', (data) => {
+
+    var cityList = document.querySelectorAll(".heritage-city-single ul");
+   // console.log('CITY LIST', cityList); cityList is a nodeList 
+
+    
+    cityList.forEach((theItem) => {
+        // theItem is the UL element for an entire city; we need to go through those children; 
+
+      //  console.log(theItem.childNodes); // for each of these (the UL element); 
+      // get their kid/child (the li) and check if the kid does NOT have a class named hidden on it
+            for (const child of theItem.childNodes) {
+
+               // console.log(child.querySelectorAll('li')); does not work, returns an empty node list.. 
+             //  console.log(typeOf(child));
+            console.log(child.querySelectorAll[style*="opacity"]);
+
+            }
+        // console.log(theItem);  
+        console.log('end of list');
+        // iterate through each of these children, if none of these children have an inline style property named opacity, 
+         // delete the parent dom 
+    
+
+ok, i was still trying to figure out how to select 
+
+I tried console.log(child.querySelector('li').style.opacity); (thought this would return the li )
+returned noghing
+
+console.log(child.style.opacity); 
+and that worked! that returned a value of 1 for items that appeared in the search results 
+
+(I swear that i tried child.style before and nothing was returned. )
+
+
+now at https://gitlab.com/cpl/css-playground/-/commit/6587be04ec37c3614a2c3de618afa860cd71d34c
+
+I'm still stuck or needing figure out, now that i can express the criteria of an item that appears in the search result ((child.style.opacity !== '' ) )
+((child.style.opacity !== '' ) when that statement is true, )
+
+I want to exit the ; otherwise, i want to commit an action 
+
+I'm doing DOM manipulation and I have multiple <ul> lists; I want to delete the ul's parent if none of the child li's have a certain inline style; and I know how to detect if the child li has that certain inline style; but I fumbling so that: if there is a child that meet my criteria, exit and go to the next ul ; if no good child is found do x
+
+and I asked for help in the cleveland tech slack; 
+
+and ross richey 
+
+he succintly found a way to concisely describe those elements using 
+ https://gitlab.com/cpl/css-playground/-/commit/288f70f9f43bbfaae5af1207c8942d3f7c007b4d
+
+(I forgot about the has element!); which is below
+
+    const canDelete = theContainer.querySelectorAll('ul:not(:has(li[style*="opacity"]');
+
+which, select the UL elements that DO NOT have li elements whose inline style property contains opacit
+
+
+AND 
+was the commit with on the heritage-map branch; with this implemented 
+4dab438949e84431c681b35c25aaf739055c70a3
+
+
+BUT, the dom nodes are deleted 
+
+I had naively assumed that the DOM would be reset, after you finish a search and would go back to the search input field; that the dom would reset, and it does not! 
+
+AND in my heritage-map code, the callback is ran twice; 
+
+2025-11-18: 
+
+So, I need to temporarily hide them (the cities that do not have any search results for them) for all users!
+
+SHORTLIST;
+
+https://gitlab.com/cpl/css-playground/-/commit/6587be04ec37c3614a2c3de618afa860cd71d34c
+at that point, the items are deleted from the dom, so when you 
+
+and 
+https://github.com/clevepl/cpl-org/pull/480/commits/4dab438949e84431c681b35c25aaf739055c70a3
+
+
+
+i'm spinning my wheels with the filtering of the items and having the filters still work after a user enters in one term/city/name. 
+
+
+in addition to needing to know how to hide; I also need to create a listener or an event, so that when a user tries a new search, or resets the results, that dom elements aren't hidden anymore; 
+where can i find those events that I can call so that the results are 
+
+(all this time, I know, this filtering could have been done in elasticpress, but there is no realtime bindings for so, at least, there's no in-page filtering; there's an opi)
+
+
+BUT, then tyrone added a listener in https://github.com/clevepl/cpl-org/pull/480/commits/82336c356faf4705820c08c9642b022edcb5ff84 commit, and this worked! 
+that would re
+
+(again, i couldn't use the ; because I had a parent )
+
+
+==================
+
+now, that I added 
+
+g
+although I'm wondering whether we should also scrap this and use the filtering system within ELASTICPRESS, although I don't know if elasticpress does the dynamic filtering, 
+i think it does require a new page load if you want to search and open a modal, and using the widget and widget blocks. 
+
+
+
+
+the elasticpress widget questions that i have are: 
+
+how to get the widget to display within the content ? 
+no, i just call a widget area instead! 
+
+
+
+
+https://www.elastic.co/guide/en/app-search/current/relevance-tuning-guide.html
+
+
+
+git diff > patches/2025-10-13-early-going-the-elasticsearch-reoute
+based on the last commit of d974a9eb8ac3ff795fb2f4c277a16b932cf2d8f7  
+
+- this was exploring the path using elasticpress 
+
+
+USE SOURCE MAPS FOR DEBUGGING - https://github.com/10up/wp-scaffold/blob/dc3429591f11082277c0db68f0484da8a8231b78/docs/frontend-development/frontend-build-process.md?plain=1#L197
+
+AND IN my 10up scaffodl theme 
+
+=============
+
+
+yeah i had that but then my boss had some issue with it
+and it's otherwise working with ACF, etc
+i'm going to try using headers for the API key like you have it set up. we are doing just URL concat like https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($zip_code) . "&key=" . $api_key
+Will S.
+ — 
+Yesterday at 3:45 PM
+try with the headers and let me know it goes; I had to do some geocoding with another project in google maps earlier this summer using curl and used headers as, if i remember correctly.
+(in the terminal)
+cbirdsong (he/him)
+ — 
+Yesterday at 5:28 PM
+
+    API keys with referer restrictions cannot be used with this API.
+
+well, this message showing up earlier would've been helpful
+cbirdsong (he/him)
+ — 
+Yesterday at 6:39 PM
+i guess IP address-based restriction is the only way to do it, and WP Engine gave me a list of ~90 IP addresses that could potentially be used
+soothingglitter
+ — 
+4:59 AM
+https://share.google/rTaBms55CNs8yTP4Z 
+cbirdsong (he/him)
+ — 
+11:09 AM
+this quoted bit would be pretty definitive, but it's not on google's documentation anymore 
+
+    This service is generally designed for geocoding static (known in advance) addresses for placement of application content on a map; this service is not designed to respond in real time to user input. For dynamic geocoding (for example, within a user interface element), consult the documentation for the Maps JavaScript API client geocoder and/or the Google Play services Location APIs.
+
+
+
+
+
+  					echo '<a href="' . esc_url( get_permalink() ) . '">' . '<span>' . esc_html( get_the_title() ) . '</span></a>';
